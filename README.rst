@@ -1,16 +1,17 @@
-EXEMPLE BUILD.SH FILE
+====================
+Build RPMs for Plone
 ====================
 Intro
 -----
 This repo is used to create rpms for Plone site. RPMs are created with a buildout. 
 
-Step
+Steps
 ----
 * Create a rpm.cfg buildout which used to create rpms.
 * Create folder rpm into your buildout repo.
 * Create a build.sh file into rpm folder.
 
-File
+Files
 ----
 - build.sh ::
 

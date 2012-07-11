@@ -138,5 +138,5 @@ find %{installdir} -name "*.mo" -delete;
 rm -rf $RPM_BUILD_ROOT%{installdir} $RPM_BUILD_ROOT/etc
 
 %changelog
-* Tue July 10 2012 - Benoît Suttor <bsuttor@cirb.irisnet.be> 0.1
+* Tue Jul 10 2012 - Benoît Suttor <bsuttor@cirb.irisnet.be> 0.1
 - initial build

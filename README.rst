@@ -29,13 +29,16 @@ Files
     cp -r ../* $TMP_DIR/$JOB_NAME-$RPM_VERSION
     tar czvf SOURCES/$JOB_NAME-$RPM_VERSION.tar.gz --exclude=*.spec -C $TMP_DIR \
              $JOB_NAME-$RPM_VERSION
+    rm template.spec*
+    wget https://raw.github.com/bsuttor/Rpmizer/master/template.spec
     rpmbuild --define "portal $JOB_NAME" \
              --define "home $HOME" \
              --define "user $USER" \
              --define "version ${RPM_VERSION}" \
              --define="_topdir $PWD" \
              --define="_tmppath $PWD/tmp" \
-             -bb https://raw.github.com/bsuttor/Rpmizer/master/template.spec
+             -bb template.spec
+    rm -fr $TMP_DIR
 
 * rpm.cfg ::
 

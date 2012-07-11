@@ -82,7 +82,9 @@ for file in `ls $RPM_BUILD_ROOT%{installdir}/parts/zeoserver/bin/`
 do
     sed -i s/${RPM_BUILD_ROOT//\//\\/}//g $RPM_BUILD_ROOT%{installdir}/parts/zeoserver/bin/$file
 done
-
+rm $RPM_BUILD_ROOT%{installdir}/bin/client2
+rm -rf $RPM_BUILD_ROOT%{installdir}/parts/client2
+rm -rf $RPM_BUILD_ROOT%{installdir}/var/client2
 
 %files core
 %defattr(-, %{user}, %{user}, 0755)

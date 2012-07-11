@@ -1,7 +1,6 @@
 %define __prelink_undo_cmd %{nil}
 %define name %{portal}
 %define installdir %{home}/%{user}/%{name}
-%define rcscript /etc/init.d/%{name}
 %define python /usr/bin/python2.6
 %define portbase 13080
 
@@ -111,7 +110,6 @@ find %{installdir} -name "*.mo" -delete;
 
 %files zeo
 %defattr(-, %{user}, %{user} , 0755)
-%{rcscript}-zeo
 %config(noreplace) %{installdir}/parts/zeoserver/etc/zeo.conf
 #%{installdir}/bin/zodbpack
 %{installdir}/bin/backup
@@ -128,7 +126,6 @@ find %{installdir} -name "*.mo" -delete;
 
 %files client1
 %defattr(-, %{user}, %{user}, 0755)
-%{rcscript}-client1
 %config(noreplace) %{installdir}/parts/client1/etc/zope.conf
 %{installdir}/bin/client1
 %{installdir}/parts/client1

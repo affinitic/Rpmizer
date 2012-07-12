@@ -33,11 +33,11 @@ AutoReqProv: no
 %description core
 %{summary}
 
-%package    zeo
+%package    zeoserver
 Summary:    %{summary} - core
 Group: Applications/Database
 Requires:   %{name}-core = %{version}
-%description zeo
+%description zeoserver
 %{summary}
 
 %package    client1
@@ -110,7 +110,7 @@ find %{installdir} -name "*.mo" -delete;
 %postun core
 /sbin/ldconfig
 
-%files zeo
+%files zeoserver
 %defattr(-, %{user}, %{user} , 0755)
 %config(noreplace) %{installdir}/parts/zeoserver/etc/zeo.conf
 #%{installdir}/bin/zodbpack

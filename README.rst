@@ -18,26 +18,26 @@ Files
     #!/bin/sh
     export QA_RPATHS=$[ 0x0001|0x0002]
     RPM_VERSION="0.2.${BUILD_NUMBER}"
-    JOB_NAME=prb-website
+    JOB_NAME=project-website
     HOME=/data
-    USER=prb
+    USER=projectuser
     TMP_DIR=$(mktemp -d $PWD/jenkins.
-
     mkdir $TMP_DIR/$JOB_NAME-$RPM_VERSION
     rm -fr ../eggs
+    rm -rf BUILD BUILDROOT SOURCES SPECS SRPMS tmp RPMS
     mkdir -p BUILD RPMS SRPMS SOURCES tmp
     cp -r ../* $TMP_DIR/$JOB_NAME-$RPM_VERSION
     tar czvf SOURCES/$JOB_NAME-$RPM_VERSION.tar.gz --exclude=*.spec -C $TMP_DIR \
              $JOB_NAME-$RPM_VERSION
-    rm template.spec*
-    wget https://raw.github.com/bsuttor/Rpmizer/master/template.spec
+    rm simple.spec*
+    wget https://raw.github.com/CIRB/Rpmizer/master/template.spec
     rpmbuild --define "portal $JOB_NAME" \
              --define "home $HOME" \
              --define "user $USER" \
              --define "version ${RPM_VERSION}" \
              --define="_topdir $PWD" \
              --define="_tmppath $PWD/tmp" \
-             -bb template.spec
+             -bb simple.spec
     rm -fr $TMP_DIR
 
 * rpm.cfg ::

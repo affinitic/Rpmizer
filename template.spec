@@ -68,6 +68,7 @@ cp -r $RPM_BUILD_DIR/%{name}-%{version}/eggs/setuptools* $RPM_BUILD_ROOT%{instal
 cd $RPM_BUILD_ROOT%{installdir}/
 #rm  $RPM_BUILD_ROOT%{installdir}/.mr.developer.cfg
 rm  $RPM_BUILD_ROOT%{installdir}/.installed.cfg
+rm  $RPM_BUILD_ROOT%{installdir}/copy_ckeditor_code
 rm -fr $RPM_BUILD_ROOT%{installdir}/downloads
 rm -fr $RPM_BUILD_ROOT%{installdir}/parts/docs
 #rm -fr $RPM_BUILD_ROOT%{installdir}/.svn

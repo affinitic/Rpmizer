@@ -30,7 +30,7 @@ Files
     tar czvf SOURCES/$JOB_NAME-$RPM_VERSION.tar.gz --exclude=*.spec -C $TMP_DIR \
              $JOB_NAME-$RPM_VERSION
     rm simple.spec*
-    wget https://raw.github.com/CIRB/Rpmizer/master/template.spec
+    wget https://raw.github.com/CIRB/Rpmizer/master/simple.spec
     rpmbuild --define "portal $JOB_NAME" \
              --define "home $HOME" \
              --define "user $USER" \

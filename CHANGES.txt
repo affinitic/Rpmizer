@@ -4,7 +4,7 @@ Changelog
 1.1 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Clean code : rm  $RPM_BUILD_ROOT%{installdir}/bin/copy_ckeditor_code
 
 
 1.0 (2012-07-20)

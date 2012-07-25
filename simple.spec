@@ -73,13 +73,10 @@ done
 cp -r $RPM_BUILD_DIR/%{name}-%{version}/eggs/zc.buildout* $RPM_BUILD_ROOT%{installdir}/eggs
 cp -r $RPM_BUILD_DIR/%{name}-%{version}/eggs/setuptools* $RPM_BUILD_ROOT%{installdir}/eggs
 cd $RPM_BUILD_ROOT%{installdir}/
-#rm  $RPM_BUILD_ROOT%{installdir}/.mr.developer.cfg
 rm  $RPM_BUILD_ROOT%{installdir}/.installed.cfg
 rm -fr $RPM_BUILD_ROOT%{installdir}/downloads
 rm -fr $RPM_BUILD_ROOT%{installdir}/parts/docs
-#rm -fr $RPM_BUILD_ROOT%{installdir}/.svn
 rm -fr $RPM_BUILD_ROOT%{installdir}/.git
-#rm $RPM_BUILD_ROOT%{installdir}/bin/develop
 rm $RPM_BUILD_ROOT%{installdir}/bin/instance
 rm -rf $RPM_BUILD_ROOT%{installdir}/parts/instance
 rm -rf $RPM_BUILD_ROOT%{installdir}/parts/lxml
@@ -89,22 +86,10 @@ for file in `ls $RPM_BUILD_ROOT%{installdir}/parts/zeoserver/bin/`
 do
     sed -i s/${RPM_BUILD_ROOT//\//\\/}//g $RPM_BUILD_ROOT%{installdir}/parts/zeoserver/bin/$file
 done
-for file in `ls $RPM_BUILD_ROOT%{installdir}/parts/zeoserver/etc/`
-do
-    sed -i s/${RPM_BUILD_ROOT//\//\\/}//g $RPM_BUILD_ROOT%{installdir}/parts/zeoserver/etc/$file
-done
-for file in `ls $RPM_BUILD_ROOT%{installdir}/parts/client1/etc/`
-do
-    sed -i s/${RPM_BUILD_ROOT//\//\\/}//g $RPM_BUILD_ROOT%{installdir}/parts/client1/etc/$file
-done
-for file in `ls $RPM_BUILD_ROOT%{installdir}/parts/client2/etc/`
-do
-    sed -i s/${RPM_BUILD_ROOT//\//\\/}//g $RPM_BUILD_ROOT%{installdir}/parts/client2/etc/$file
-done
+sed -i s/${RPM_BUILD_ROOT//\//\\/}//g $RPM_BUILD_ROOT%{installdir}/parts/zeoserver/etc/zeo.conf
+sed -i s/${RPM_BUILD_ROOT//\//\\/}//g $RPM_BUILD_ROOT%{installdir}/parts/client1/etc/zope.conf
+sed -i s/${RPM_BUILD_ROOT//\//\\/}//g $RPM_BUILD_ROOT%{installdir}/parts/client2/etc/zope.conf
 
-#rm $RPM_BUILD_ROOT%{installdir}/bin/client2
-#rm -rf $RPM_BUILD_ROOT%{installdir}/parts/client2
-#rm -rf $RPM_BUILD_ROOT%{installdir}/var/client2
 
 %files core
 %defattr(-, %{user}, %{user}, 0755)

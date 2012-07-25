@@ -1,8 +1,8 @@
 %define __prelink_undo_cmd %{nil}
 %define name %{portal}
-%define installdir /data/prb/%{name}
+%define installdir %{home}/%{user}/%{name}
 %define python /usr/bin/python2.6
-%define user prb
+%define user %{user}
 %define portbase 13080
 
 Name: %{name}

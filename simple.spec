@@ -47,6 +47,13 @@ Requires:   %{name}-core = %{version}
 %description client1
 %{summary}
 
+%package    client2
+Summary:    %{summary} - client2
+Group: Applications/Database
+Requires:   %{name}-core = %{version}
+%description client2
+%{summary}
+
 %prep
 %setup
 
@@ -82,9 +89,22 @@ for file in `ls $RPM_BUILD_ROOT%{installdir}/parts/zeoserver/bin/`
 do
     sed -i s/${RPM_BUILD_ROOT//\//\\/}//g $RPM_BUILD_ROOT%{installdir}/parts/zeoserver/bin/$file
 done
-rm $RPM_BUILD_ROOT%{installdir}/bin/client2
-rm -rf $RPM_BUILD_ROOT%{installdir}/parts/client2
-rm -rf $RPM_BUILD_ROOT%{installdir}/var/client2
+for file in `ls $RPM_BUILD_ROOT%{installdir}/parts/zeoserver/etc/`
+do
+    sed -i s/${RPM_BUILD_ROOT//\//\\/}//g $RPM_BUILD_ROOT%{installdir}/parts/zeoserver/etc/$file
+done
+for file in `ls $RPM_BUILD_ROOT%{installdir}/parts/client1/etc/`
+do
+    sed -i s/${RPM_BUILD_ROOT//\//\\/}//g $RPM_BUILD_ROOT%{installdir}/parts/client1/etc/$file
+done
+for file in `ls $RPM_BUILD_ROOT%{installdir}/parts/client2/etc/`
+do
+    sed -i s/${RPM_BUILD_ROOT//\//\\/}//g $RPM_BUILD_ROOT%{installdir}/parts/client2/etc/$file
+done
+
+#rm $RPM_BUILD_ROOT%{installdir}/bin/client2
+#rm -rf $RPM_BUILD_ROOT%{installdir}/parts/client2
+#rm -rf $RPM_BUILD_ROOT%{installdir}/var/client2
 
 %files core
 %defattr(-, %{user}, %{user}, 0755)
@@ -133,9 +153,20 @@ find %{installdir} -name "*.mo" -delete;
 %{installdir}/parts/client1
 %{installdir}/var/client1
 
+%files client2
+%defattr(-, %{user}, %{user}, 0755)
+%config(noreplace) %{installdir}/parts/client2/etc/zope.conf
+%{installdir}/bin/client2
+%{installdir}/parts/client2
+%{installdir}/var/client2
+
+
 %clean
 rm -rf $RPM_BUILD_ROOT%{installdir} $RPM_BUILD_ROOT/etc
 
 %changelog
+* Wed Jul 25 2012 -  Benoît Suttor <bsuttor@cirb.irisnet.be> 0.1.1
+- Add client2 construction
+- Clean path into zope.conf file and zeo.conf file
 * Tue Jul 10 2012 - Benoît Suttor <bsuttor@cirb.irisnet.be> 0.1
 - initial build

@@ -2,7 +2,6 @@
 %define name %{portal}
 %define installdir %{home}/%{user}/%{name}
 %define python /usr/bin/python2.6
-%define user %{user}
 %define portbase 13080
 
 Name: %{name}

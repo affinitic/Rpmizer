@@ -11,7 +11,7 @@ Steps
 * Create a rpm.cfg buildout which used to create rpms.
 * Create folder named `rpm` into your buildout repo.
 * Create a build.sh file into rpm folder.
-* Create a job into jenkins
+* Create a job into jenkins.
 
 Files
 -----
@@ -42,26 +42,14 @@ Files
              -bb simple.spec
     rm -fr $TMP_DIR
 
-* rpm.cfg (This is just a example)::
+* rpm.cfg : This file is used to construct rpm.
 
-    [buildout]
-    parts = instance
-    extends = http://dist.plone.org/release/4.2-latest/versions.cfg
-    find-links = http://dist.repoze.org/
-
-    [instance]
-    recipe = plone.recipe.zope2instance
-    eggs = 
-        Pillow
-
-    [versions]
-    zc.buildout = 1.4.4
 
 Jobs
 ----
 You have to construct rpms with a Jenkins job. For creating a jenkins job, 
 
-* Go to http://jenkins.cirb.lan.
+* Go to jenkins.
 * Click on *Nouveau Job*.
 * Choose a name a put it into *Nom du Job* input.
 * Use the option *Copier un Job existant*. In the input *Copier à partir de*, put *Build-rpm-research*

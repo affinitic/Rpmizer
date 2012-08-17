@@ -43,7 +43,7 @@ Files
     rm -fr $TMP_DIR
 
 
-Don't forget to add execution rught ::
+Don't forget to add execution right ::
     
     $ chmod +x build.sh
 

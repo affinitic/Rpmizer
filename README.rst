@@ -1,3 +1,4 @@
+.. contents::
 ====================
 Build RPMs for Plone
 ====================

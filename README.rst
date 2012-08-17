@@ -42,22 +42,17 @@ Files
              -bb simple.spec
     rm -fr $TMP_DIR
 
-* rpm.cfg (change extends section)::
+* rpm.cfg (This is just a example)::
 
     [buildout]
-    extends = 
-        project.cfg
+    parts = instance
+    extends = http://dist.plone.org/release/4.2-latest/versions.cfg
+    find-links = http://dist.repoze.org/
 
-    [hosts]
-    client1 = 127.0.0.1
-    client2 = 127.0.0.1
-    zeo = 127.0.0.1
-
-    [ports]
-    instance = 8080
-    client1 = 8080
-    client2 = 8081
-    zeo = 8100
+    [instance]
+    recipe = plone.recipe.zope2instance
+    eggs = 
+        Pillow
 
     [versions]
     zc.buildout = 1.4.4

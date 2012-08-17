@@ -23,7 +23,7 @@ Files
     JOB_NAME=project-website
     HOME=/data
     USER=projectuser
-    TMP_DIR=$(mktemp -d $PWD/jenkins.
+    TMP_DIR=$(mktemp -d $PWD/jenkins.XXX)
     mkdir $TMP_DIR/$JOB_NAME-$RPM_VERSION
     rm -fr ../eggs
     rm -rf BUILD BUILDROOT SOURCES SPECS SRPMS tmp RPMS
@@ -41,6 +41,11 @@ Files
              --define="_tmppath $PWD/tmp" \
              -bb simple.spec
     rm -fr $TMP_DIR
+
+
+Don't forget to add execution rught ::
+    
+    $ chmod +x build.sh
 
 * rpm.cfg : This file is used to construct rpm.
 

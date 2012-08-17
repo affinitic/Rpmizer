@@ -65,6 +65,7 @@ Files
 Jobs
 ----
 You have to construct rpms with a Jenkins job. For creating a jenkins job, 
+
 * Go to http://jenkins.cirb.lan.
 * Click on `Nouveau Job`.
 * Choose a name `Nom du Job`.

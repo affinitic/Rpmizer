@@ -42,12 +42,11 @@ Files
              -bb simple.spec
     rm -fr $TMP_DIR
 
-* rpm.cfg (in extends, replace master by the last tag of plone-buildout)::
+* rpm.cfg (change extends section)::
 
     [buildout]
     extends = 
         project.cfg
-        https://raw.github.com/CIRB/plone-buildout/master/both.cfg?login=jenkins-cirb&token=4d0a9ab50e431868b36636193ae08c69
 
     [hosts]
     client1 = 127.0.0.1

@@ -127,6 +127,7 @@ find %{installdir} -name "*.mo" -delete;
 %{installdir}/bin/snapshotrestore
 %{installdir}/bin/zeopack
 %{installdir}/bin/zeoserver
+%{installdir}/bin/copy_ckeditor_code
 %{installdir}/parts/zeoserver
 %{installdir}/var/zeoserver
 %{installdir}/var/filestorage

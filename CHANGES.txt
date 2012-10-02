@@ -4,6 +4,10 @@ Changelog
 1.0.2 (unreleased)
 ------------------
 
+- `simple.spec`
+  - Use `name` instead of `portal` as input parameter
+  - Add etc/ in install_dir
+  - Do not distribute develop-eggs
 - Add prb spec.
 - Add a client2 on rpm fabrication.
 

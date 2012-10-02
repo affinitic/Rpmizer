@@ -1,5 +1,4 @@
 %define __prelink_undo_cmd %{nil}
-%define name %{portal}
 %define installdir %{home}/%{user}/%{name}
 %define python /usr/bin/python2.6
 %define portbase 13080
@@ -65,6 +64,7 @@ mkdir -p $RPM_BUILD_ROOT%{installdir}/downloads
 bin/buildout -N -c rpm.cfg buildout:directory=$RPM_BUILD_ROOT%{installdir} buildout:rpm-directory=%{installdir}
 
 %install
+mkdir -p $RPM_BUILD_ROOT%{installdir}/etc
 for file in `ls $RPM_BUILD_ROOT%{installdir}/bin/`
 do
     sed -i s/${RPM_BUILD_ROOT//\//\\/}//g $RPM_BUILD_ROOT%{installdir}/bin/$file
@@ -94,12 +94,12 @@ sed -i s/${RPM_BUILD_ROOT//\//\\/}//g $RPM_BUILD_ROOT%{installdir}/parts/client2
 
 %files core
 %defattr(-, %{user}, %{user}, 0755)
-%{installdir}/develop-eggs
 %{installdir}/eggs
 %{installdir}/var/log
 %dir %{installdir}/bin
 %dir %{installdir}/parts
 %dir %{installdir}/var
+%dir %{installdir}/etc
 
 %pre core
 exit 0
@@ -151,6 +151,10 @@ find %{installdir} -name "*.mo" -delete;
 rm -rf $RPM_BUILD_ROOT%{installdir} $RPM_BUILD_ROOT/etc
 
 %changelog
+* Tue Oct 2 2012 -  Godefroid Chapelle <gotcha@bubblenet.be> 0.1.2
+- Use 'name' instead of 'portal' as input parameter
+- Add etc/ in install_dir
+- Do not distribute develop-eggs
 * Wed Jul 25 2012 -  Benoît Suttor <bsuttor@cirb.irisnet.be> 0.1.1
 - Add client2 construction
 - Clean path into zope.conf file and zeo.conf file

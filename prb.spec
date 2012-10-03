@@ -66,6 +66,7 @@ cp $RPM_BUILD_DIR/%{name}-%{version}/table-default.diff $RPM_BUILD_ROOT%{install
 bin/buildout -N -c rpm.cfg buildout:directory=$RPM_BUILD_ROOT%{installdir} buildout:rpm-directory=%{installdir}
 
 %install
+mkdir -p $RPM_BUILD_ROOT%{installdir}/etc
 for file in `ls $RPM_BUILD_ROOT%{installdir}/bin/`
 do
     sed -i s/${RPM_BUILD_ROOT//\//\\/}//g $RPM_BUILD_ROOT%{installdir}/bin/$file
@@ -101,6 +102,7 @@ done
 %dir %{installdir}/bin
 %dir %{installdir}/parts
 %dir %{installdir}/var
+%dir %{installdir}/etc
 
 %pre core
 exit 0

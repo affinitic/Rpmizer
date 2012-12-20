@@ -53,6 +53,20 @@ Requires:   %{name}-core = %{version}
 %description client2
 %{summary}
 
+%package    client3
+Summary:    %{summary} - client3
+Group: Applications/Database
+Requires:   %{name}-core = %{version}
+%description client3
+%{summary}
+
+%package    client4
+Summary:    %{summary} - client4
+Group: Applications/Database
+Requires:   %{name}-core = %{version}
+%description client4
+%{summary}
+
 %prep
 %setup
 
@@ -90,6 +104,8 @@ done
 sed -i s/${RPM_BUILD_ROOT//\//\\/}//g $RPM_BUILD_ROOT%{installdir}/parts/zeoserver/etc/zeo.conf
 sed -i s/${RPM_BUILD_ROOT//\//\\/}//g $RPM_BUILD_ROOT%{installdir}/parts/client1/etc/zope.conf
 sed -i s/${RPM_BUILD_ROOT//\//\\/}//g $RPM_BUILD_ROOT%{installdir}/parts/client2/etc/zope.conf
+sed -i s/${RPM_BUILD_ROOT//\//\\/}//g $RPM_BUILD_ROOT%{installdir}/parts/client3/etc/zope.conf
+sed -i s/${RPM_BUILD_ROOT//\//\\/}//g $RPM_BUILD_ROOT%{installdir}/parts/client4/etc/zope.conf
 
 
 %files core
@@ -146,11 +162,27 @@ find %{installdir} -name "*.mo" -delete;
 %{installdir}/parts/client2
 %{installdir}/var/client2
 
+%files client3
+%defattr(-, %{user}, %{user}, 0755)
+%config(noreplace) %{installdir}/parts/client3/etc/zope.conf
+%{installdir}/bin/client3
+%{installdir}/parts/client3
+%{installdir}/var/client3
+
+%files client4
+%defattr(-, %{user}, %{user}, 0755)
+%config(noreplace) %{installdir}/parts/client4/etc/zope.conf
+%{installdir}/bin/client4
+%{installdir}/parts/client4
+%{installdir}/var/client4
+
 
 %clean
 rm -rf $RPM_BUILD_ROOT%{installdir} $RPM_BUILD_ROOT/etc
 
 %changelog
+* Thu Dec 20 2012 - Benoît Suttor <bsuttor@cirb.irisnet.be> 0.1.3
+- Add client3 and client4
 * Tue Oct 2 2012 -  Godefroid Chapelle <gotcha@bubblenet.be> 0.1.2
 - Use 'name' instead of 'portal' as input parameter
 - Add etc/ in install_dir

@@ -1,5 +1,4 @@
 %define __prelink_undo_cmd %{nil}
-%define name %{portal}
 %define installdir %{home}/%{user}/%{name}
 %define python /usr/bin/python2.6
 %define portbase 13080
@@ -10,7 +9,7 @@ Release: 1
 Summary: %{name} portal
 URL: http://cirb.irisnet.be
 License: GPL
-Vendor: CIRB
+Vendor: CIRB-CIBG
 Packager: bsuttor <bsuttor@cirb.irisnet.be>
 Group: Applications/Database
 Buildroot: %{_tmppath}/%{name}-buildroot

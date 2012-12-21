@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.0.5 (unreleased)
+2.0.0 (2012-12-21)
 ------------------
 
 - Add client3 and client4.

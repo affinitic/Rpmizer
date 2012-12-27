@@ -53,6 +53,20 @@ Requires:   %{name}-core = %{version}
 %description client2
 %{summary}
 
+%package    client3
+Summary:    %{summary} - client3
+Group: Applications/Database
+Requires:   %{name}-core = %{version}
+%description client3
+%{summary}
+
+%package    client4
+Summary:    %{summary} - client4
+Group: Applications/Database
+Requires:   %{name}-core = %{version}
+%description client4
+%{summary}
+
 %prep
 %setup
 
@@ -74,6 +88,8 @@ done
 sed -i s/${RPM_BUILD_ROOT//\//\\/}//g $RPM_BUILD_ROOT%{installdir}/parts/zeoserver/etc/zeo.conf
 sed -i s/${RPM_BUILD_ROOT//\//\\/}//g $RPM_BUILD_ROOT%{installdir}/parts/client1/etc/zope.conf
 sed -i s/${RPM_BUILD_ROOT//\//\\/}//g $RPM_BUILD_ROOT%{installdir}/parts/client2/etc/zope.conf
+sed -i s/${RPM_BUILD_ROOT//\//\\/}//g $RPM_BUILD_ROOT%{installdir}/parts/client3/etc/zope.conf
+sed -i s/${RPM_BUILD_ROOT//\//\\/}//g $RPM_BUILD_ROOT%{installdir}/parts/client4/etc/zope.conf
 cp -r $RPM_BUILD_DIR/%{name}-%{version}/eggs/zc.buildout* $RPM_BUILD_ROOT%{installdir}/eggs
 cp -r $RPM_BUILD_DIR/%{name}-%{version}/eggs/setuptools* $RPM_BUILD_ROOT%{installdir}/eggs
 cd $RPM_BUILD_ROOT%{installdir}/
@@ -121,11 +137,11 @@ find %{installdir} -name "*.mo" -delete;
 %files zeoserver
 %defattr(-, %{user}, %{user} , 0755)
 %config(noreplace) %{installdir}/parts/zeoserver/etc/zeo.conf
-%{installdir}/bin/backup
+%config(noreplace) %{installdir}/bin/backup
+%config(noreplace) %{installdir}/bin/restore
+%config(noreplace) %{installdir}/bin/snapshotbackup
+%config(noreplace) %{installdir}/bin/snapshotrestore
 %{installdir}/bin/repozo
-%{installdir}/bin/restore
-%{installdir}/bin/snapshotbackup
-%{installdir}/bin/snapshotrestore
 %{installdir}/bin/zeopack
 %{installdir}/bin/zeoserver
 %{installdir}/bin/copy_ckeditor_code
@@ -148,10 +164,27 @@ find %{installdir} -name "*.mo" -delete;
 %{installdir}/parts/client2
 %{installdir}/var/client2
 
+%files client3
+%defattr(-, %{user}, %{user}, 0755)
+%config(noreplace) %{installdir}/parts/client3/etc/zope.conf
+%{installdir}/bin/client3
+%{installdir}/parts/client3
+%{installdir}/var/client3
+
+%files client4
+%defattr(-, %{user}, %{user}, 0755)
+%config(noreplace) %{installdir}/parts/client4/etc/zope.conf
+%{installdir}/bin/client4
+%{installdir}/parts/client4
+%{installdir}/var/client4
+
+
 %clean
 rm -rf $RPM_BUILD_ROOT%{installdir} $RPM_BUILD_ROOT/etc
 
 %changelog
+* Thu Dec 27 2012 - Benoît Suttor <bsuttor@cirb.irisnet.be> 0.2.1
+- Add client3 and client4, and no replace backup files
 * Tue May 08 2012 - Benoît Suttor <bsuttor@cirb.irisnet.be> 0.2
 - Used with puppet for one zeo server and two clients
 * Tue Mar 22 2012 - Jean Francois Roche <jfroche@affinitic.be> 0.1

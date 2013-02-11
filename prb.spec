@@ -105,6 +105,7 @@ rm -fr $RPM_BUILD_ROOT%{installdir}/downloads
 rm -fr $RPM_BUILD_ROOT%{installdir}/parts/docs
 rm -fr $RPM_BUILD_ROOT%{installdir}/.git
 rm $RPM_BUILD_ROOT%{installdir}/bin/instance
+rm $RPM_BUILD_ROOT%{installdir}/bin/pil*.py
 rm -rf $RPM_BUILD_ROOT%{installdir}/parts/instance
 rm -rf $RPM_BUILD_ROOT%{installdir}/parts/lxml
 find $RPM_BUILD_ROOT%{installdir} -name "*.pyc" -delete;

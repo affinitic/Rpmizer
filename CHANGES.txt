@@ -4,7 +4,7 @@ Changelog
 2.1.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Spec files don't copy setuptools any more.
 
 
 2.1.1 (2013-02-11)

@@ -85,7 +85,7 @@ do
     sed -i s/${RPM_BUILD_DIR//\//\\/}\\/%{name}-%{version}\\/eggs/\\%{home}\\/%{user}\\/%{name}\\/eggs/g $RPM_BUILD_ROOT%{installdir}/bin/$file
 done
 cp -r $RPM_BUILD_DIR/%{name}-%{version}/eggs/zc.buildout* $RPM_BUILD_ROOT%{installdir}/eggs
-cp -r $RPM_BUILD_DIR/%{name}-%{version}/eggs/setuptools* $RPM_BUILD_ROOT%{installdir}/eggs
+#cp -r $RPM_BUILD_DIR/%{name}-%{version}/eggs/setuptools* $RPM_BUILD_ROOT%{installdir}/eggs
 cd $RPM_BUILD_ROOT%{installdir}/
 rm  $RPM_BUILD_ROOT%{installdir}/.installed.cfg
 rm -fr $RPM_BUILD_ROOT%{installdir}/downloads

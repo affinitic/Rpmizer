@@ -141,10 +141,10 @@ find %{installdir} -name "*.mo" -delete;
 %defattr(-, %{user}, %{user} , 0755)
 %config(noreplace) %{installdir}/parts/zeoserver/etc/zeo.conf
 #%{installdir}/bin/zodbpack
-%config(noreplace) %{installdir}/bin/backup
-%config(noreplace) %{installdir}/bin/restore
-%config(noreplace) %{installdir}/bin/snapshotbackup
-%config(noreplace) %{installdir}/bin/snapshotrestore
+%{installdir}/bin/backup
+%{installdir}/bin/restore
+%{installdir}/bin/snapshotbackup
+%{installdir}/bin/snapshotrestore
 %{installdir}/bin/fullbackup
 %{installdir}/bin/repozo
 %{installdir}/bin/zeopack
@@ -187,6 +187,9 @@ find %{installdir} -name "*.mo" -delete;
 rm -rf $RPM_BUILD_ROOT%{installdir} $RPM_BUILD_ROOT/etc
 
 %changelog
+* Thu May 14 2013 - Benoît Suttor <bsuttor@cirb.irisnet.be>
+- Replace backup files (from recipe)
+- Add fullbackup script
 * Thu Dec 20 2012 - Benoît Suttor <bsuttor@cirb.irisnet.be> 0.1.3
 - Add client3 and client4, and no replace backup files
 * Tue Oct 2 2012 -  Godefroid Chapelle <gotcha@bubblenet.be> 0.1.2

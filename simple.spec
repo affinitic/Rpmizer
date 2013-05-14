@@ -145,6 +145,7 @@ find %{installdir} -name "*.mo" -delete;
 %config(noreplace) %{installdir}/bin/restore
 %config(noreplace) %{installdir}/bin/snapshotbackup
 %config(noreplace) %{installdir}/bin/snapshotrestore
+%{installdir}/bin/fullbackup
 %{installdir}/bin/repozo
 %{installdir}/bin/zeopack
 %{installdir}/bin/zeoserver

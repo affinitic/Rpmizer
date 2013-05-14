@@ -4,7 +4,7 @@ Changelog
 2.1.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Add bin/fullbackup to zeoserver rpm.
 
 
 2.1.2 (2013-02-11)

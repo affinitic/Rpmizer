@@ -74,6 +74,7 @@ Requires:   %{name}-core = %{version}
 rm -rf $RPM_BUILD_ROOT
 mkdir -p $RPM_BUILD_ROOT%{installdir}
 mkdir -p $RPM_BUILD_ROOT%{installdir}/downloads
+mkdir -p $RPM_BUILD_ROOT%{installdir}/download-cache/downloads
 %{python} bootstrap.py -c rpm.cfg
 bin/buildout -N -c rpm.cfg install download
 bin/buildout -N -c rpm.cfg install install

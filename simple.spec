@@ -77,8 +77,8 @@ mkdir -p $RPM_BUILD_ROOT%{installdir}/downloads
 mkdir -p $RPM_BUILD_ROOT%{installdir}/buildout-cache/downloads
 mkdir -p buildout-cache/downloads
 %{python} bootstrap.py -c rpm.cfg
-bin/buildout -N -c rpm.cfg install download buildout:directory=$RPM_BUILD_ROOT%{installdir} buildout:rpm-directory=%{installdir}
-bin/buildout -N -c rpm.cfg install install buildout:directory=$RPM_BUILD_ROOT%{installdir} buildout:rpm-directory=%{installdir}
+bin/buildout -N -c rpm.cfg install download
+bin/buildout -N -c rpm.cfg install install
 bin/buildout -N -c rpm.cfg buildout:directory=$RPM_BUILD_ROOT%{installdir} buildout:rpm-directory=%{installdir}
 
 %install

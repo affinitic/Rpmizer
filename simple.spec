@@ -75,8 +75,6 @@ rm -rf $RPM_BUILD_ROOT
 mkdir -p $RPM_BUILD_ROOT%{installdir}
 mkdir -p $RPM_BUILD_ROOT%{installdir}/downloads
 %{python} bootstrap.py -c rpm.cfg
-bin/buildout -N -c rpm.cfg install download
-bin/buildout -N -c rpm.cfg install install
 bin/buildout -N -c rpm.cfg buildout:directory=$RPM_BUILD_ROOT%{installdir} buildout:rpm-directory=%{installdir}
 
 %install

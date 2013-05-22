@@ -75,11 +75,12 @@ rm -rf $RPM_BUILD_ROOT
 mkdir -p $RPM_BUILD_ROOT%{installdir}
 mkdir -p $RPM_BUILD_ROOT%{installdir}/downloads
 mkdir -p $RPM_BUILD_ROOT%{installdir}/buildout-cache/downloads
+mkdir -p $RPM_BUILD_ROOT%{installdir}/buildout-cache/eggs
 mkdir -p buildout-cache/downloads
 %{python} bootstrap.py -c rpm.cfg
 bin/buildout -N -c rpm.cfg install download 
 bin/buildout -N -c rpm.cfg install install 
-cp -r $RPM_BUILD_ROOT%{installdir}/buildout-cache/eggs %{installdir}
+cp -r $RPM_BUILD_ROOT%{installdir}/buildout-cache/eggs %{installdir}/buildout-cache/eggs
 bin/buildout -N -c rpm.cfg buildout:directory=$RPM_BUILD_ROOT%{installdir} buildout:rpm-directory=%{installdir}
 
 %install

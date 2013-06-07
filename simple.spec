@@ -1,6 +1,6 @@
 %define __prelink_undo_cmd %{nil}
 %define installdir %{home}/%{user}/%{name}
-%define python /usr/bin/python2.6
+%define python /usr/bin/python2.7
 %define portbase 13080
 
 Name: %{name}
@@ -15,7 +15,7 @@ Group: Applications/Database
 Buildroot: %{_tmppath}/%{name}-buildroot
 Source: %{name}-%{version}.tar.gz
 BuildRequires:  subversion, git, zlib-devel, freetype-devel, libjpeg-devel, gcc
-BuildRequires:  python >= 2.6.6, libxslt-devel
+BuildRequires:  libxslt-devel
 AutoReqProv: no
 
 %description
@@ -24,9 +24,8 @@ AutoReqProv: no
 %package    core
 Summary:    %{summary} - core without any clients
 Group: Applications/Database
-Requires:   python >= 2.6.6
 Requires:   openssl-devel
-Requires:   python-devel
+Requires:   python27-devel
 Requires:   zlib freetype
 AutoReqProv: no
 %description core

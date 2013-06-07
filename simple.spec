@@ -73,7 +73,12 @@ Requires:   %{name}-core = %{version}
 rm -rf $RPM_BUILD_ROOT
 mkdir -p $RPM_BUILD_ROOT%{installdir}
 mkdir -p $RPM_BUILD_ROOT%{installdir}/downloads
+mkdir -p $RPM_BUILD_ROOT%{installdir}/eggs
 %{python} bootstrap.py -c rpm.cfg
+bin/buildout -N -c rpm.cfg install download
+bin/buildout -N -c rpm.cfg install install
+cp -r $RPM_BUILD_DIR/%{name}-%{version}/buildout-cache/downloads/* $RPM_BUILD_ROOT%{installdir}/downloads/
+cp -r $RPM_BUILD_DIR/%{name}-%{version}/buildout-cache/eggs/* $RPM_BUILD_ROOT%{installdir}/eggs/
 bin/buildout -N -c rpm.cfg buildout:directory=$RPM_BUILD_ROOT%{installdir} buildout:rpm-directory=%{installdir}
 
 %install
@@ -186,6 +191,9 @@ find %{installdir} -name "*.mo" -delete;
 rm -rf $RPM_BUILD_ROOT%{installdir} $RPM_BUILD_ROOT/etc
 
 %changelog
+* Thu Jun 07 2013 - Benoît Suttor <bsuttor@cirb.irisnet.be>
+- Use python2.7
+- Use, like tracis-ci, unified installer for downloading eggs.
 * Thu May 14 2013 - Benoît Suttor <bsuttor@cirb.irisnet.be>
 - Replace backup files (from recipe)
 - Add fullbackup script

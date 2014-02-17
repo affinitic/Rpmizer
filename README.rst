@@ -73,5 +73,5 @@ You have to construct rpms with a Jenkins job. For creating a jenkins job,
 * Click on *Nouveau Job*.
 * Choose a name a put it into *Nom du Job* input.
 * Use the option *Copier un Job existant*. In the input *Copier à partir de*, put *Build-rpm-research*
-* Change the github link, put the github link to the buildout project (with https and not ssh).
+* Change the github link, put the github link to the buildout project (with ssh and not http).
 

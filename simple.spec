@@ -14,7 +14,7 @@ Packager: bsuttor <bsuttor@cirb.irisnet.be>
 Group: Applications/Database
 Buildroot: %{_tmppath}/%{name}-buildroot
 Source: %{name}-%{version}.tar.gz
-BuildRequires:  subversion, git, zlib-devel, freetype-devel, libjpeg-devel, gcc
+BuildRequires:  git, zlib-devel, freetype-devel, libjpeg-devel, gcc
 BuildRequires:  libxslt-devel
 AutoReqProv: no
 

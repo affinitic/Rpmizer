@@ -29,7 +29,7 @@ tar czvf $RPM_ROOT_DIR/SOURCES/$RPM_NAME-$RPM_VERSION.tar.gz --exclude=*.spec -C
 
 # get simple.spec from Rpmizer repository
 SIMPLE_SPEC=$BUILD_DIR/simple.spec
-wget -O $SIMPLE_SPEC https://raw.github.com/CIRB/Rpmizer/2.2.0/simple.spec --no-check-certificate
+wget -O $SIMPLE_SPEC https://raw.github.com/CIRB/Rpmizer/master/simple.spec --no-check-certificate
 
 rpmbuild --define "name $RPM_NAME" \
     --define "home $HOME" \

@@ -188,7 +188,8 @@ find %{installdir} -name "*.mo" -delete;
 
 
 %clean
-rm -rf $RPM_BUILD_ROOT%{installdir} $RPM_BUILD_ROOT/etc
+#rm -rf $RPM_BUILD_ROOT%{installdir} $RPM_BUILD_ROOT/etc
+echo NOOP
 
 %changelog
 * Thu Jun 07 2013 - Benoît Suttor <bsuttor@cirb.irisnet.be>

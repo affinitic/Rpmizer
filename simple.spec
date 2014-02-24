@@ -71,7 +71,6 @@ Requires:   %{name}-core = %{version}
 
 %build
 # BUILD
-rm -rf $RPM_BUILD_DIR
 mkdir -p $RPM_BUILD_DIR%{installdir}
 mkdir -p $RPM_BUILD_DIR%{installdir}/downloads
 mkdir -p $RPM_BUILD_DIR%{installdir}/eggs
@@ -191,8 +190,8 @@ find %{installdir} -name "*.mo" -delete;
 
 
 %clean
-#rm -rf $RPM_BUILD_ROOT%{installdir} $RPM_BUILD_ROOT/etc
-echo NOOP
+rm -rf $RPM_BUILD_ROOT%{installdir} $RPM_BUILD_ROOT/etc
+#echo NOOP
 
 %changelog
 * Thu Jun 07 2013 - Benoît Suttor <bsuttor@cirb.irisnet.be>

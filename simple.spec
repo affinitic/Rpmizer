@@ -83,7 +83,8 @@ bin/buildout -N -c rpm.cfg buildout:directory=$RPM_BUILD_DIR%{installdir}
 
 %install
 # BUILDROOT
-cp -r $RPM_BUILD_DIR%{home} $RPM_BUILD_ROOT%{home}
+mkdir -p $RPM_BUILD_ROOT
+cp -r $RPM_BUILD_DIR%{home} $RPM_BUILD_ROOT
 mkdir -p $RPM_BUILD_ROOT%{installdir}/etc
 for file in `ls $RPM_BUILD_ROOT%{installdir}/bin/`
 do

@@ -20,6 +20,7 @@ cd $RPM_ROOT_DIR
 mkdir -p BUILD RPMS SRPMS SOURCES tmp
 
 # prepare source before archive
+# Archive is needed by %setup command in specfile %prep section
 ARCHIVE_DIR=$BUILD_DIR/$RPM_NAME-$RPM_VERSION
 mkdir $ARCHIVE_DIR
 cp -r $SRC_DIR/* $ARCHIVE_DIR

@@ -70,18 +70,21 @@ Requires:   %{name}-core = %{version}
 %setup
 
 %build
-rm -rf $RPM_BUILD_ROOT
-mkdir -p $RPM_BUILD_ROOT%{installdir}
-mkdir -p $RPM_BUILD_ROOT%{installdir}/downloads
-mkdir -p $RPM_BUILD_ROOT%{installdir}/eggs
+# BUILD
+rm -rf $RPM_BUILD_DIR
+mkdir -p $RPM_BUILD_DIR%{installdir}
+mkdir -p $RPM_BUILD_DIR%{installdir}/downloads
+mkdir -p $RPM_BUILD_DIR%{installdir}/eggs
 %{python} bootstrap.py -c rpm.cfg
 bin/buildout -N -c rpm.cfg install download
 bin/buildout -N -c rpm.cfg install install
-cp -r $RPM_BUILD_DIR/%{name}-%{version}/buildout-cache/downloads/* $RPM_BUILD_ROOT%{installdir}/downloads/
-cp -r $RPM_BUILD_DIR/%{name}-%{version}/buildout-cache/eggs/* $RPM_BUILD_ROOT%{installdir}/eggs/
-bin/buildout -N -c rpm.cfg buildout:directory=$RPM_BUILD_ROOT%{installdir} buildout:rpm-directory=%{installdir}
+cp -r $RPM_BUILD_DIR/%{name}-%{version}/buildout-cache/downloads/* $RPM_BUILD_DIR%{installdir}/downloads/
+cp -r $RPM_BUILD_DIR/%{name}-%{version}/buildout-cache/eggs/* $RPM_BUILD_DIR%{installdir}/eggs/
+bin/buildout -N -c rpm.cfg buildout:directory=$RPM_BUILD_DIR%{installdir} 
 
 %install
+# BUILDROOT
+cp -r $RPM_BUILD_DIR $RPM_BUILD_ROOT
 mkdir -p $RPM_BUILD_ROOT%{installdir}/etc
 for file in `ls $RPM_BUILD_ROOT%{installdir}/bin/`
 do

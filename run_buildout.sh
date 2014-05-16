@@ -5,9 +5,9 @@ if [ $# -lt 3 ]; then
     echo "Run buildout awaits path_to_python, install_dir and rpm_build_directory passed as arguments"
 fi
 
-PATH_TO_PYTHON = $1
-RPM_BUILD_DIR = $2
-INSTALL_DIR = $3
+PATH_TO_PYTHON=$1
+RPM_BUILD_DIR=$2
+INSTALL_DIR=$3
 
 mkdir -p $INSTALL_DIR/downloads $INSTALL_DIR/eggs
 $PATH_TO_PYTHON bootstrap.py -c rpm.cfg

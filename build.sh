@@ -35,6 +35,7 @@ wget -O $SIMPLE_SPEC https://raw.github.com/CIRB/Rpmizer/$RPMIZER_VERSION/simple
 
 RUN_BUILDOUT=$BUILD_DIR/run_buildout.sh
 wget -O $RUN_BUILDOUT https://raw.github.com/CIRB/Rpmizer/$RPMIZER_VERSION/run_buildout.sh --no-check-certificate
+chmod +x $RUN_BUILDOUT
 
 rpmbuild --define "name $RPM_NAME" \
     --define "home $HOME" \
@@ -42,4 +43,4 @@ rpmbuild --define "name $RPM_NAME" \
     --define "version $RPM_VERSION" \
     --define="_topdir $RPM_ROOT_DIR" \
     --define="_tmppath $RPM_ROOT_DIR/tmp" \
-    -bb $BUILD_DIR/simple.spec
+    -bb $SIMPLE_SPEC

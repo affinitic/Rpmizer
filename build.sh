@@ -43,4 +43,5 @@ rpmbuild --define "name $RPM_NAME" \
     --define "version $RPM_VERSION" \
     --define="_topdir $RPM_ROOT_DIR" \
     --define="_tmppath $RPM_ROOT_DIR/tmp" \
+    --define="run_buildout $RUN_BUILDOUT" \
     -bb $SIMPLE_SPEC

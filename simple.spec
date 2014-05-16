@@ -71,6 +71,7 @@ Requires:   %{name}-core = %{version}
 
 %build
 # BUILD
+pwd
 ./run_buildout.sh %{python} $RPM_BUILD_DIR/%{name}-%{version} $RPM_BUILD_DIR%{installdir}
 
 %install

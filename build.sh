@@ -2,7 +2,7 @@
 set -e
 export QA_RPATHS=$[ 0x0001|0x0002 ]
 
-RPM_VERSION="3.0.${BUILD_NUMBER}"
+RPM_VERSION="3.1.${BUILD_NUMBER}"
 RPM_NAME=${1}-website
 HOME=/data
 USER=${1}

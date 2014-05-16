@@ -1,16 +1,16 @@
 Changelog
 =========
 
-2.2.1 (unreleased)
+2.3.0 (2014-05-16)
 ------------------
 
-- Nothing changed yet.
+- Add build.sh, extracted from common buildout.
 
 
 2.2.0 (2013-06-07)
 ------------------
 
-- Nothing changed yet.
+- Add eggs from unifiedinstaller.
 
 
 2.1.4 (2013-05-14)

@@ -71,15 +71,7 @@ Requires:   %{name}-core = %{version}
 
 %build
 # BUILD
-mkdir -p $RPM_BUILD_DIR%{installdir}
-mkdir -p $RPM_BUILD_DIR%{installdir}/downloads
-mkdir -p $RPM_BUILD_DIR%{installdir}/eggs
-%{python} bootstrap.py -c rpm.cfg
-bin/buildout -N -c rpm.cfg install download
-bin/buildout -N -c rpm.cfg install install
-cp -r $RPM_BUILD_DIR/%{name}-%{version}/buildout-cache/downloads/* $RPM_BUILD_DIR%{installdir}/downloads/
-cp -r $RPM_BUILD_DIR/%{name}-%{version}/buildout-cache/eggs/* $RPM_BUILD_DIR%{installdir}/eggs/
-bin/buildout -N -c rpm.cfg buildout:directory=$RPM_BUILD_DIR%{installdir} 
+run_buildout.sh %{python} $RPM_BUILD_DIR/%{name}-%{version} $RPM_BUILD_DIR%{installdir}
 
 %install
 # BUILDROOT

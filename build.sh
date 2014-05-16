@@ -4,6 +4,7 @@ export QA_RPATHS=$[ 0x0001|0x0002 ]
 
 RPM_VERSION="3.1.${BUILD_NUMBER}"
 RPM_NAME=${1}-website
+RPMIZER_VERSION="master"
 HOME=/data
 USER=${1}
 
@@ -30,7 +31,10 @@ tar czvf $RPM_ROOT_DIR/SOURCES/$RPM_NAME-$RPM_VERSION.tar.gz --exclude=*.spec -C
 
 # get simple.spec from Rpmizer repository
 SIMPLE_SPEC=$BUILD_DIR/simple.spec
-wget -O $SIMPLE_SPEC https://raw.github.com/CIRB/Rpmizer/2.3.0/simple.spec --no-check-certificate
+wget -O $SIMPLE_SPEC https://raw.github.com/CIRB/Rpmizer/$RPMIZER_VERSION/simple.spec --no-check-certificate
+
+RUN_BUILDOUT=$BUILD_DIR/run_buildout.sh
+wget -O $RUN_BUILDOUT https://raw.github.com/CIRB/Rpmizer/$RPMIZER_VERSION/run_buildout.sh --no-check-certificate
 
 rpmbuild --define "name $RPM_NAME" \
     --define "home $HOME" \

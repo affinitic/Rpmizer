@@ -31,10 +31,10 @@ tar czvf $RPM_ROOT_DIR/SOURCES/$RPM_NAME-$RPM_VERSION.tar.gz --exclude=*.spec -C
 
 # get simple.spec from Rpmizer repository
 SIMPLE_SPEC=$BUILD_DIR/simple.spec
-wget -O $SIMPLE_SPEC https://raw.github.com/CIRB/Rpmizer/$RPMIZER_VERSION/simple.spec --no-check-certificate
+wget --no-cache -O $SIMPLE_SPEC https://raw.github.com/CIRB/Rpmizer/$RPMIZER_VERSION/simple.spec --no-check-certificate
 
 RUN_BUILDOUT=$BUILD_DIR/run_buildout.sh
-wget -O $RUN_BUILDOUT https://raw.github.com/CIRB/Rpmizer/$RPMIZER_VERSION/run_buildout.sh --no-check-certificate
+wget --no-cache -O $RUN_BUILDOUT https://raw.github.com/CIRB/Rpmizer/$RPMIZER_VERSION/run_buildout.sh --no-check-certificate
 chmod +x $RUN_BUILDOUT
 
 rpmbuild --define "name $RPM_NAME" \

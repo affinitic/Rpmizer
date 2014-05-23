@@ -6,6 +6,7 @@ Changelog
 
 - Run_buildout moves files instead of copying.
 - Rpm build cleans more.
+- Buildout config passed as parameter to run buildouts.
 
 
 2.3.0 (2014-05-16)

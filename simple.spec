@@ -71,7 +71,7 @@ Requires:   %{name}-core = %{version}
 
 %build
 # BUILD
-%{run_buildout} %{python} $RPM_BUILD_DIR/%{name}-%{version} $RPM_BUILD_DIR%{installdir}
+%{run_buildout} %{python} $RPM_BUILD_DIR/%{name}-%{version} $RPM_BUILD_DIR%{installdir} rpm.cfg
 
 %install
 # BUILDROOT

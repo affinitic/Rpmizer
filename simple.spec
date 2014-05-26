@@ -80,8 +80,8 @@ cp -r $RPM_BUILD_DIR%{home} $RPM_BUILD_ROOT
 mkdir -p $RPM_BUILD_ROOT%{installdir}/etc
 for file in `ls $RPM_BUILD_ROOT%{installdir}/bin/`
 do
-    sed -i s/${RPM_BUILD_DIR//\//\\/}//g $RPM_BUILD_ROOT%{installdir}/bin/$file
-    sed -i s/${RPM_BUILD_DIR//\//\\/}\\/%{name}-%{version}\\/eggs/\\%{home}\\/%{user}\\/%{name}\\/eggs/g $RPM_BUILD_ROOT%{installdir}/bin/$file
+    sed -i s:${RPM_BUILD_DIR/:/\\:}::g $RPM_BUILD_ROOT%{installdir}/bin/$file
+    sed -i s:${RPM_BUILD_DIR/:/\\:}/%{name}-%{version}/eggs:%{home}/%{user}/%{name}/eggs:g $RPM_BUILD_ROOT%{installdir}/bin/$file
 done
 cp -r $RPM_BUILD_DIR/%{name}-%{version}/eggs/zc.buildout* $RPM_BUILD_ROOT%{installdir}/eggs
 #cp -r $RPM_BUILD_DIR/%{name}-%{version}/eggs/setuptools* $RPM_BUILD_ROOT%{installdir}/eggs
@@ -99,18 +99,18 @@ find $RPM_BUILD_ROOT%{installdir} -name "*.pyc" -delete;
 find $RPM_BUILD_ROOT%{installdir} -name "*.pyo" -delete;
 for file in `ls $RPM_BUILD_ROOT%{installdir}/parts/zeoserver/bin/`
 do
-    sed -i s/${RPM_BUILD_DIR//\//\\/}//g $RPM_BUILD_ROOT%{installdir}/parts/zeoserver/bin/$file
+    sed -i s:${RPM_BUILD_DIR/:/\\:}::g $RPM_BUILD_ROOT%{installdir}/parts/zeoserver/bin/$file
 done
-sed -i s/${RPM_BUILD_DIR//\//\\/}//g $RPM_BUILD_ROOT%{installdir}/parts/zeoserver/etc/zeo.conf
-sed -i s/${RPM_BUILD_DIR//\//\\/}//g $RPM_BUILD_ROOT%{installdir}/parts/client1/etc/zope.conf
-sed -i s/${RPM_BUILD_DIR//\//\\/}//g $RPM_BUILD_ROOT%{installdir}/parts/client2/etc/zope.conf
-sed -i s/${RPM_BUILD_DIR//\//\\/}//g $RPM_BUILD_ROOT%{installdir}/parts/client3/etc/zope.conf
-sed -i s/${RPM_BUILD_DIR//\//\\/}//g $RPM_BUILD_ROOT%{installdir}/parts/client4/etc/zope.conf
+sed -i s:${RPM_BUILD_DIR/:/\\:}::g $RPM_BUILD_ROOT%{installdir}/parts/zeoserver/etc/zeo.conf
+sed -i s:${RPM_BUILD_DIR/:/\\:}::g $RPM_BUILD_ROOT%{installdir}/parts/client1/etc/zope.conf
+sed -i s:${RPM_BUILD_DIR/:/\\:}::g $RPM_BUILD_ROOT%{installdir}/parts/client2/etc/zope.conf
+sed -i s:${RPM_BUILD_DIR/:/\\:}::g $RPM_BUILD_ROOT%{installdir}/parts/client3/etc/zope.conf
+sed -i s:${RPM_BUILD_DIR/:/\\:}::g $RPM_BUILD_ROOT%{installdir}/parts/client4/etc/zope.conf
 
-sed -i s/${RPM_BUILD_DIR//\//\\/}//g $RPM_BUILD_ROOT%{installdir}/parts/client1/bin/interpreter
-sed -i s/${RPM_BUILD_DIR//\//\\/}//g $RPM_BUILD_ROOT%{installdir}/parts/client2/bin/interpreter
-sed -i s/${RPM_BUILD_DIR//\//\\/}//g $RPM_BUILD_ROOT%{installdir}/parts/client3/bin/interpreter
-sed -i s/${RPM_BUILD_DIR//\//\\/}//g $RPM_BUILD_ROOT%{installdir}/parts/client4/bin/interpreter
+sed -i s:${RPM_BUILD_DIR/:/\\:}::g $RPM_BUILD_ROOT%{installdir}/parts/client1/bin/interpreter
+sed -i s:${RPM_BUILD_DIR/:/\\:}::g $RPM_BUILD_ROOT%{installdir}/parts/client2/bin/interpreter
+sed -i s:${RPM_BUILD_DIR/:/\\:}::g $RPM_BUILD_ROOT%{installdir}/parts/client3/bin/interpreter
+sed -i s:${RPM_BUILD_DIR/:/\\:}::g $RPM_BUILD_ROOT%{installdir}/parts/client4/bin/interpreter
 
 %files core
 %defattr(-, %{user}, %{user}, 0755)

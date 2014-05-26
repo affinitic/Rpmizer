@@ -101,16 +101,21 @@ for file in `ls $RPM_BUILD_ROOT%{installdir}/parts/zeoserver/bin/`
 do
     sed -i s:${RPM_BUILD_DIR/:/\\:}::g $RPM_BUILD_ROOT%{installdir}/parts/zeoserver/bin/$file
 done
-sed -i s:${RPM_BUILD_DIR/:/\\:}::g $RPM_BUILD_ROOT%{installdir}/parts/zeoserver/etc/zeo.conf
-sed -i s:${RPM_BUILD_DIR/:/\\:}::g $RPM_BUILD_ROOT%{installdir}/parts/client1/etc/zope.conf
-sed -i s:${RPM_BUILD_DIR/:/\\:}::g $RPM_BUILD_ROOT%{installdir}/parts/client2/etc/zope.conf
-sed -i s:${RPM_BUILD_DIR/:/\\:}::g $RPM_BUILD_ROOT%{installdir}/parts/client3/etc/zope.conf
-sed -i s:${RPM_BUILD_DIR/:/\\:}::g $RPM_BUILD_ROOT%{installdir}/parts/client4/etc/zope.conf
-
-sed -i s:${RPM_BUILD_DIR/:/\\:}::g $RPM_BUILD_ROOT%{installdir}/parts/client1/bin/interpreter
-sed -i s:${RPM_BUILD_DIR/:/\\:}::g $RPM_BUILD_ROOT%{installdir}/parts/client2/bin/interpreter
-sed -i s:${RPM_BUILD_DIR/:/\\:}::g $RPM_BUILD_ROOT%{installdir}/parts/client3/bin/interpreter
-sed -i s:${RPM_BUILD_DIR/:/\\:}::g $RPM_BUILD_ROOT%{installdir}/parts/client4/bin/interpreter
+TO_CLEAN_UP=( \
+    zeoserver/etc/zeo.conf \
+    client1/etc/zope.conf \
+    client2/etc/zope.conf \
+    client3/etc/zope.conf \
+    client4/etc/zope.conf \
+    client1/bin/interpreter \
+    client2/bin/interpreter \
+    client3/bin/interpreter \
+    client4/bin/interpreter \
+)
+for file in "${TO_CLEAN_UP[@]}"
+do
+    sed -i s:${RPM_BUILD_DIR/:/\\:}::g $RPM_BUILD_ROOT%{installdir}/parts/zeoserver/bin/$file
+done
 
 %files core
 %defattr(-, %{user}, %{user}, 0755)

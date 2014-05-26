@@ -81,7 +81,7 @@ mkdir -p $RPM_BUILD_ROOT%{installdir}/etc
 for file in `ls $RPM_BUILD_ROOT%{installdir}/bin/`
 do
     sed -i s:${RPM_BUILD_DIR/:/\\:}::g $RPM_BUILD_ROOT%{installdir}/bin/$file
-    sed -i s:${RPM_BUILD_DIR/:/\\:}/%{name}-%{version}/eggs:%{home}/%{user}/%{name}/eggs:g $RPM_BUILD_ROOT%{installdir}/bin/$file
+    sed -i s:${RPM_BUILD_DIR/:/\\:}/%{name}-%{version}/eggs:%{installdir}/eggs:g $RPM_BUILD_ROOT%{installdir}/bin/$file
 done
 cp -r $RPM_BUILD_DIR/%{name}-%{version}/eggs/zc.buildout* $RPM_BUILD_ROOT%{installdir}/eggs
 #cp -r $RPM_BUILD_DIR/%{name}-%{version}/eggs/setuptools* $RPM_BUILD_ROOT%{installdir}/eggs

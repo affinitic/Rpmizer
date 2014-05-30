@@ -71,17 +71,18 @@ Requires:   %{name}-core = %{version}
 
 %build
 # BUILD
-%{run_buildout} %{python} $RPM_BUILD_DIR/%{name}-%{version} $RPM_BUILD_ROOT rpm.cfg
+%{run_buildout} %{python} $RPM_BUILD_DIR/%{name}-%{version} $RPM_BUILD_DIR/buildout rpm.cfg
 
 %install
 # BUILDROOT
+BUILDOUT_DIR=$RPM_BUILD_DIR/buildout
 TARGET_DIR=%{installdir}
 INSTALL_DIR=$RPM_BUILD_ROOT%{installdir}
 mkdir -p $INSTALL_DIR/etc
-mv $RPM_BUILD_ROOT/bin $RPM_BUILD_ROOT/var $RPM_BUILD_ROOT/parts $RPM_BUILD_ROOT/eggs $INSTALL_DIR
+mv $BUILDOUT_DIR/bin $BUILDOUT_DIR/var $BUILDOUT_DIR/parts $BUILDOUT_DIR/eggs $INSTALL_DIR
 for file in `ls $INSTALL_DIR/bin/`
 do
-    sed -i s:${RPM_BUILD_ROOT/:/\\:}:${TARGET_DIR/:/\\:}:g $INSTALL_DIR/bin/$file
+    sed -i s:${BUILDOUT_DIR/:/\\:}:${TARGET_DIR/:/\\:}:g $INSTALL_DIR/bin/$file
 done
 cd $INSTALL_DIR/
 rm -fr $INSTALL_DIR/parts/docs

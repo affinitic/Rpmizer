@@ -3,13 +3,17 @@ set -e
 
 usage() { echo "Usage: $0 [-v rpmizer_version] project_id" 1>&2; exit 1; }
 
-#default value
+#default values
 RPMIZER_VERSION="master"
+DEBUG="build"
 
-while getopts ":v:p:" o; do
+while getopts ":v:d" o; do
     case "${o}" in
         v)
             RPMIZER_VERSION=${OPTARG}
+            ;;
+        d)
+            DEBUG="debug"
             ;;
         *)
             usage
@@ -18,7 +22,6 @@ while getopts ":v:p:" o; do
 done
 shift $((OPTIND-1))
 
-export QA_RPATHS=$[ 0x0001|0x0002 ]
 
 PROJECT_ID=${1}
 RPM_NAME=${PROJECT_ID}-website
@@ -52,17 +55,42 @@ tar czvf $RPM_ROOT_DIR/SOURCES/$RPM_NAME-$RPM_VERSION.tar.gz --exclude=*.spec -C
 
 # get simple.spec from Rpmizer repository
 SIMPLE_SPEC=$BUILD_DIR/simple.spec
-wget --no-cache -O $SIMPLE_SPEC https://raw.github.com/CIRB/Rpmizer/$RPMIZER_VERSION/simple.spec --no-check-certificate
+if [[$DEBUG=="build"]]; then
+  wget --no-cache -O $SIMPLE_SPEC https://raw.github.com/CIRB/Rpmizer/$RPMIZER_VERSION/simple.spec --no-check-certificate
+fi
 
 RUN_BUILDOUT=$BUILD_DIR/run_buildout.sh
-wget --no-cache -O $RUN_BUILDOUT https://raw.github.com/CIRB/Rpmizer/$RPMIZER_VERSION/run_buildout.sh --no-check-certificate
-chmod +x $RUN_BUILDOUT
+if [[$DEBUG=="build"]]; then
+  wget --no-cache -O $RUN_BUILDOUT https://raw.github.com/CIRB/Rpmizer/$RPMIZER_VERSION/run_buildout.sh --no-check-certificate
+  chmod +x $RUN_BUILDOUT
+fi
 
-rpmbuild --define "name $RPM_NAME" \
-    --define "home $HOME" \
-    --define "user $USER" \
-    --define "version $RPM_VERSION" \
-    --define="_topdir $RPM_ROOT_DIR" \
-    --define="_tmppath $RPM_ROOT_DIR/tmp" \
-    --define="run_buildout $RUN_BUILDOUT" \
-    -bb $SIMPLE_SPEC
+INSTALL_BUILDOUT=$BUILD_DIR/install_buildout.sh
+if [[$DEBUG=="build"]]; then
+wget --no-cache -O $INSTALL_BUILDOUT
+https://raw.github.com/CIRB/Rpmizer/$RPMIZER_VERSION/install_buildout.sh --no-check-certificate
+chmod +x $INSTALL_BUILDOUT
+fi
+
+case $DEBUG in
+  build )
+    export QA_RPATHS=$[ 0x0001|0x0002 ]
+    rpmbuild --define "name $RPM_NAME" \
+        --define "home $HOME" \
+        --define "user $USER" \
+        --define "version $RPM_VERSION" \
+        --define="_topdir $RPM_ROOT_DIR" \
+        --define="_tmppath $RPM_ROOT_DIR/tmp" \
+        --define="run_buildout $RUN_BUILDOUT" \
+        --define="clean_buildout $INSTALL_BUILDOUT" \
+        -bb $SIMPLE_SPEC
+     ;;
+  debug )
+     echo "debug still needs to be implemented"
+     #$RUN_BUILDOUT  `which python2.7` $RPM_NAME-$RPM_VERSION $BUILDOUT_DIR rpm.cfg
+     #$INSTALL_BUILDOUT $BUILDOUT_DIR $INSTALL_DIR $RPM_BUILD_ROOT
+     exit 0 ;;
+  * )
+     echo "invalid value for DEBUG"
+     exit 1 ;;
+esac

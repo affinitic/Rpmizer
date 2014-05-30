@@ -4,6 +4,7 @@ Changelog
 2.3.2 (unreleased)
 ------------------
 
+- Pass $RPMIZER_VERSION as argument of build.sh
 - Improve readability of simple.spec
 
 

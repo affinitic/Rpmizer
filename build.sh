@@ -4,7 +4,7 @@ export QA_RPATHS=$[ 0x0001|0x0002 ]
 
 RPM_VERSION="3.1.${BUILD_NUMBER}"
 RPM_NAME=${1}-website
-RPMIZER_VERSION="master"
+RPMIZER_VERSION=${2}
 HOME=/data
 USER=${1}
 

@@ -115,7 +115,7 @@ TO_CLEAN_UP=( \
 )
 for file in "${TO_CLEAN_UP[@]}"
 do
-    sed -i s:${RPM_BUILD_DIR/:/\\:}::g $INSTALL_DIR/parts/zeoserver/bin/$file
+    sed -i s:${RPM_BUILD_DIR/:/\\:}::g $INSTALL_DIR/parts/$file
 done
 
 %files core

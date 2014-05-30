@@ -77,8 +77,8 @@ Requires:   %{name}-core = %{version}
 # BUILDROOT
 TARGET_DIR=%{installdir}
 INSTALL_DIR=$RPM_BUILD_ROOT%{installdir}
-mv $RPM_BUILD_ROOT/bin $RPM_BUILD_ROOT/var $RPM_BUILD_ROOT/parts $RPM_BUILD_ROOT/eggs $INSTALL_DIR
 mkdir -p $INSTALL_DIR/etc
+mv $RPM_BUILD_ROOT/bin $RPM_BUILD_ROOT/var $RPM_BUILD_ROOT/parts $RPM_BUILD_ROOT/eggs $INSTALL_DIR
 for file in `ls $INSTALL_DIR/bin/`
 do
     sed -i s:${RPM_BUILD_ROOT/:/\\:}:${TARGET_DIR/:/\\:}:g $INSTALL_DIR/bin/$file

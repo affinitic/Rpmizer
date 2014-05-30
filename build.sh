@@ -29,7 +29,7 @@ RPM_VERSION="3.1.${BUILD_NUMBER:-undefined}"
 HOME=/data
 
 
-SRC_DIR=${WORKSPACE:=.}/src
+SRC_DIR=${WORKSPACE:=`pwd`}/src
 BUILD_DIR=$WORKSPACE/build
 
 rm -rf $BUILD_DIR

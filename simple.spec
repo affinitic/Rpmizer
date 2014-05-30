@@ -71,24 +71,19 @@ Requires:   %{name}-core = %{version}
 
 %build
 # BUILD
-%{run_buildout} %{python} $RPM_BUILD_DIR/%{name}-%{version} $RPM_BUILD_DIR%{installdir} rpm.cfg
+%{run_buildout} %{python} $RPM_BUILD_DIR/%{name}-%{version} $RPM_BUILD_ROOT rpm.cfg
 
 %install
 # BUILDROOT
-mkdir -p $RPM_BUILD_ROOT
-cp -r $RPM_BUILD_DIR%{home} $RPM_BUILD_ROOT
+TARGET_DIR=%{installdir}
 INSTALL_DIR=$RPM_BUILD_ROOT%{installdir}
+mv $RPM_BUILD_ROOT/bin $RPM_BUILD_ROOT/var $RPM_BUILD_ROOT/parts $RPM_BUILD_ROOT/eggs $INSTALL_DIR
 mkdir -p $INSTALL_DIR/etc
 for file in `ls $INSTALL_DIR/bin/`
 do
-    sed -i s:${RPM_BUILD_DIR/:/\\:}::g $INSTALL_DIR/bin/$file
-    sed -i s:${RPM_BUILD_DIR/:/\\:}/%{name}-%{version}/eggs:%{installdir}/eggs:g $INSTALL_DIR/bin/$file
+    sed -i s:${RPM_BUILD_ROOT/:/\\:}:${TARGET_DIR/:/\\:}:g $INSTALL_DIR/bin/$file
 done
-cp -r $RPM_BUILD_DIR/%{name}-%{version}/eggs/zc.buildout* $INSTALL_DIR/eggs
-#cp -r $RPM_BUILD_DIR/%{name}-%{version}/eggs/setuptools* $INSTALL_DIR/eggs
 cd $INSTALL_DIR/
-rm  $INSTALL_DIR/.installed.cfg
-rm -fr $INSTALL_DIR/downloads
 rm -fr $INSTALL_DIR/parts/docs
 rm -fr $INSTALL_DIR/.git
 rm $INSTALL_DIR/bin/instance
@@ -100,7 +95,7 @@ find $INSTALL_DIR -name "*.pyc" -delete;
 find $INSTALL_DIR -name "*.pyo" -delete;
 for file in `ls $INSTALL_DIR/parts/zeoserver/bin/`
 do
-    sed -i s:${RPM_BUILD_DIR/:/\\:}::g $INSTALL_DIR/parts/zeoserver/bin/$file
+    sed -i s:${RPM_BUILD_DIR/:/\\:}:${TARGET_DIR/:/\\:}:g $INSTALL_DIR/parts/zeoserver/bin/$file
 done
 TO_CLEAN_UP=( \
     zeoserver/etc/zeo.conf \
@@ -115,7 +110,7 @@ TO_CLEAN_UP=( \
 )
 for file in "${TO_CLEAN_UP[@]}"
 do
-    sed -i s:${RPM_BUILD_DIR/:/\\:}::g $INSTALL_DIR/parts/$file
+    sed -i s:${RPM_BUILD_DIR/:/\\:}:${TARGET_DIR/:/\\:}:g $INSTALL_DIR/parts/$file
 done
 
 %files core

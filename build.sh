@@ -1,5 +1,23 @@
 #!/bin/bash
 set -e
+
+usage() { echo "Usage: $0 [-v rpmizer_version] project_id" 1>&2; exit 1; }
+
+#default value
+RPMIZER_VERSION="master"
+
+while getopts ":v:p:" o; do
+    case "${o}" in
+        v)
+            RPMIZER_VERSION=${OPTARG}
+            ;;
+        *)
+            usage
+            ;;
+    esac
+done
+shift $((OPTIND-1))
+
 export QA_RPATHS=$[ 0x0001|0x0002 ]
 
 PROJECT_ID=${1}

@@ -2,15 +2,18 @@
 set -e
 export QA_RPATHS=$[ 0x0001|0x0002 ]
 
-RPM_VERSION="3.1.${BUILD_NUMBER}"
-RPM_NAME=${1}-website
-RPMIZER_VERSION=${2-master}
+PROJECT_ID=${1}
+RPM_NAME=${PROJECT_ID}-website
+USER=${PROJECT_ID}
+
+RPM_VERSION="3.1.${BUILD_NUMBER:-undefined}"
+
 HOME=/data
-USER=${1}
 
-SRC_DIR=$WORKSPACE/src
 
+SRC_DIR=${WORKSPACE:=.}/src
 BUILD_DIR=$WORKSPACE/build
+
 rm -rf $BUILD_DIR
 mkdir $BUILD_DIR
 

@@ -71,7 +71,10 @@ Requires:   %{name}-core = %{version}
 
 %build
 # BUILD
-%{run_buildout} %{python} $RPM_BUILD_DIR/%{name}-%{version} $RPM_BUILD_DIR/buildout rpm.cfg
+# Buildout cannot be run into RPM_BUILD_ROOT
+# RPM_BUILD_ROOT is deleted by %install macro
+BUILDOUT_DIR=$RPM_BUILD_DIR/buildout
+%{run_buildout} %{python} $RPM_BUILD_DIR/%{name}-%{version} $BUILDOUT_DIR rpm.cfg
 
 %install
 # BUILDROOT

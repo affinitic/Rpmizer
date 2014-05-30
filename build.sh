@@ -67,8 +67,7 @@ fi
 
 INSTALL_BUILDOUT=$BUILD_DIR/install_buildout.sh
 if [[ $DEBUG=="build" ]]; then
-wget --no-cache -O $INSTALL_BUILDOUT
-https://raw.github.com/CIRB/Rpmizer/$RPMIZER_VERSION/install_buildout.sh --no-check-certificate
+wget --no-cache -O $INSTALL_BUILDOUT https://raw.github.com/CIRB/Rpmizer/$RPMIZER_VERSION/install_buildout.sh --no-check-certificate
 chmod +x $INSTALL_BUILDOUT
 fi
 

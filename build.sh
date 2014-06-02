@@ -85,9 +85,13 @@ case $DEBUG in
         -bb $SIMPLE_SPEC
      ;;
   debug )
-     echo "debug still needs to be implemented"
-     #$RUN_BUILDOUT  `which python2.7` $RPM_NAME-$RPM_VERSION $BUILDOUT_DIR rpm.cfg
-     #$INSTALL_BUILDOUT $BUILDOUT_DIR $INSTALL_DIR $RPM_BUILD_ROOT
+     $BUILDOUT_DIR=$WORKSPACE/buildout
+     mkdir -p $BUILDOUT_DIR
+     $RUN_BUILDOUT  `which python2.7` $RPM_NAME-$RPM_VERSION $BUILDOUT_DIR rpm.cfg
+     $TARGET_DIR=$HOME/$USER/$RPM_NAME
+     $RPM_BUILD_ROOT=$WORKSPACE/buildroot
+     mkdir -p $RPM_BUILD_ROOT
+     $INSTALL_BUILDOUT $BUILDOUT_DIR $TARGET_DIR $RPM_BUILD_ROOT
      exit 0 ;;
   * )
      echo "invalid value for DEBUG"

@@ -80,7 +80,7 @@ BUILDOUT_DIR=$RPM_BUILD_DIR/buildout
 # BUILDROOT
 BUILDOUT_DIR=$RPM_BUILD_DIR/buildout
 TARGET_DIR=%{installdir}
-%{clean_buildout} $BUILDOUT_DIR $TARGET_DIR $RPM_BUILD_ROOT
+%{install_buildout} $BUILDOUT_DIR $TARGET_DIR $RPM_BUILD_ROOT
 
 %files core
 %defattr(-, %{user}, %{user}, 0755)

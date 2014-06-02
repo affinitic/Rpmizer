@@ -81,7 +81,7 @@ case $DEBUG in
         --define="_topdir $RPM_ROOT_DIR" \
         --define="_tmppath $RPM_ROOT_DIR/tmp" \
         --define="run_buildout $RUN_BUILDOUT" \
-        --define="clean_buildout $INSTALL_BUILDOUT" \
+        --define="install_buildout $INSTALL_BUILDOUT" \
         -bb $SIMPLE_SPEC
      ;;
   debug )

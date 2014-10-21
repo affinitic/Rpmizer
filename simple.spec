@@ -108,7 +108,7 @@ find %{installdir} -name "*.mo" -delete;
 
 %files zeoserver
 %defattr(-, %{user}, %{user} , 0755)
-%config(noreplace) %{installdir}/parts/zeoserver/etc/zeo.conf
+%{installdir}/parts/zeoserver/etc/zeo.conf
 #%{installdir}/bin/zodbpack
 %{installdir}/bin/backup
 %{installdir}/bin/restore
@@ -125,28 +125,28 @@ find %{installdir} -name "*.mo" -delete;
 
 %files client1
 %defattr(-, %{user}, %{user}, 0755)
-%config(noreplace) %{installdir}/parts/client1/etc/zope.conf
+%{installdir}/parts/client1/etc/zope.conf
 %{installdir}/bin/client1
 %{installdir}/parts/client1
 %{installdir}/var/client1
 
 %files client2
 %defattr(-, %{user}, %{user}, 0755)
-%config(noreplace) %{installdir}/parts/client2/etc/zope.conf
+%{installdir}/parts/client2/etc/zope.conf
 %{installdir}/bin/client2
 %{installdir}/parts/client2
 %{installdir}/var/client2
 
 %files client3
 %defattr(-, %{user}, %{user}, 0755)
-%config(noreplace) %{installdir}/parts/client3/etc/zope.conf
+%{installdir}/parts/client3/etc/zope.conf
 %{installdir}/bin/client3
 %{installdir}/parts/client3
 %{installdir}/var/client3
 
 %files client4
 %defattr(-, %{user}, %{user}, 0755)
-%config(noreplace) %{installdir}/parts/client4/etc/zope.conf
+%{installdir}/parts/client4/etc/zope.conf
 %{installdir}/bin/client4
 %{installdir}/parts/client4
 %{installdir}/var/client4

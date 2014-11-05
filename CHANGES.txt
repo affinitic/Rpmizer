@@ -1,7 +1,7 @@
 Changelog
 =========
 
-2.3.4 (unreleased)
+2.3.4 (2014-11-05)
 ------------------
 
 - Improve debug mode.

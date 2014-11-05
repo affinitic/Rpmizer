@@ -9,12 +9,19 @@ BUILDOUT_DIR=$1
 TARGET_DIR=$2
 RPM_BUILD_ROOT=$3
 
+# workaround buildout 2.2 bug where buildout does not install its own egg
+# in buildout:directory/eggs
+fix_buildout_22() {
+        sed -i "s:^ *'[^ ]*\(eggs/zc.buildout.*egg\)',$:  join(base, '\1'),:g" "$@"
+}
+
 INSTALL_DIR=$RPM_BUILD_ROOT$TARGET_DIR
 mkdir -p "$INSTALL_DIR/etc"
 mv "$BUILDOUT_DIR/bin" "$BUILDOUT_DIR/var" "$BUILDOUT_DIR/parts" "$BUILDOUT_DIR/eggs" "$INSTALL_DIR"
 for file in $INSTALL_DIR/bin/*
 do
-    sed -i "s:${BUILDOUT_DIR/:/\\:}:${TARGET_DIR/:/\\:}:g" $file
+    sed -i "s:${BUILDOUT_DIR/:/\\:}:${TARGET_DIR/:/\\:}:g" "$file"
+    fix_buildout_22 "$file"
 done
 cd "$INSTALL_DIR/"
 rm -fr "$INSTALL_DIR/parts/docs"
@@ -28,7 +35,8 @@ find "$INSTALL_DIR" -name "*.pyc" -delete;
 find "$INSTALL_DIR" -name "*.pyo" -delete;
 for file in $INSTALL_DIR/parts/zeoserver/bin/*
 do
-    sed -i "s:${BUILDOUT_DIR/:/\\:}:${TARGET_DIR/:/\\:}:g" $file
+    sed -i "s:${BUILDOUT_DIR/:/\\:}:${TARGET_DIR/:/\\:}:g" "$file"
+    fix_buildout_22 "$file"
 done
 TO_CLEAN_UP=( \
     zeoserver/etc/zeo.conf \
@@ -44,4 +52,5 @@ TO_CLEAN_UP=( \
 for file in "${TO_CLEAN_UP[@]}"
 do
     sed -i "s:${BUILDOUT_DIR/:/\\:}:${TARGET_DIR/:/\\:}:g" "$INSTALL_DIR/parts/$file"
+    fix_buildout_22 "$INSTALL_DIR/parts/$file"
 done

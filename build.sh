@@ -1,5 +1,5 @@
 #!/bin/bash
-set -ex
+set -e
 
 usage() { echo "Usage: $0 [-d] [-v rpmizer_version] project_id" 1>&2; exit 1; }
 
@@ -93,11 +93,18 @@ case $DEBUG in
      ;;
   debug )
      BUILDOUT_DIR=$WORKSPACE/buildout
+     if [ -d "$BUILDOUT_DIR" ]; then
+       rm -rf "$BUILDOUT_DIR"
+     fi
      mkdir -p "$BUILDOUT_DIR"
      cd "$SRC_DIR"
-     "$RUN_BUILDOUT"  "$(which python2.7)" "$RPM_NAME-$RPM_VERSION" "$BUILDOUT_DIR" rpm.cfg
+     rm -rf "$SRC_DIR/bin" "$SRC_DIR/parts" "$SRC_DIR/.installed.cfg"
+     "$RUN_BUILDOUT"  "$(which python2.7)" "$SRC_DIR" "$BUILDOUT_DIR" rpm.cfg
      TARGET_DIR=$HOME/$USER/$RPM_NAME
      RPM_BUILD_ROOT=$WORKSPACE/buildroot
+     if [ -d "$RPM_BUILD_ROOT" ]; then
+       rm -rf "$RPM_BUILD_ROOT"
+     fi
      mkdir -p "$RPM_BUILD_ROOT"
      "$INSTALL_BUILDOUT" "$BUILDOUT_DIR" "$TARGET_DIR" "$RPM_BUILD_ROOT"
      exit 0 ;;

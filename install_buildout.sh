@@ -10,25 +10,25 @@ TARGET_DIR=$2
 RPM_BUILD_ROOT=$3
 
 INSTALL_DIR=$RPM_BUILD_ROOT$TARGET_DIR
-mkdir -p $INSTALL_DIR/etc
-mv $BUILDOUT_DIR/bin $BUILDOUT_DIR/var $BUILDOUT_DIR/parts $BUILDOUT_DIR/eggs $INSTALL_DIR
-for file in `ls $INSTALL_DIR/bin/`
+mkdir -p "$INSTALL_DIR/etc"
+mv "$BUILDOUT_DIR/bin" "$BUILDOUT_DIR/var" "$BUILDOUT_DIR/parts" "$BUILDOUT_DIR/eggs" "$INSTALL_DIR"
+for file in $INSTALL_DIR/bin/*
 do
-    sed -i s:${BUILDOUT_DIR/:/\\:}:${TARGET_DIR/:/\\:}:g $INSTALL_DIR/bin/$file
+    sed -i "s:${BUILDOUT_DIR/:/\\:}:${TARGET_DIR/:/\\:}:g" "$INSTALL_DIR/bin/$file"
 done
-cd $INSTALL_DIR/
-rm -fr $INSTALL_DIR/parts/docs
-rm -fr $INSTALL_DIR/.git
-rm $INSTALL_DIR/bin/instance
-rm $INSTALL_DIR/bin/pil*.py
-rm $INSTALL_DIR/bin/copy_ckeditor_code
-rm -rf $INSTALL_DIR/parts/instance
-rm -rf $INSTALL_DIR/parts/lxml
-find $INSTALL_DIR -name "*.pyc" -delete;
-find $INSTALL_DIR -name "*.pyo" -delete;
-for file in `ls $INSTALL_DIR/parts/zeoserver/bin/`
+cd "$INSTALL_DIR/"
+rm -fr "$INSTALL_DIR/parts/docs"
+rm -fr "$INSTALL_DIR/.git"
+rm "$INSTALL_DIR/bin/instance"
+rm "$INSTALL_DIR/bin/pil*.py"
+rm "$INSTALL_DIR/bin/copy_ckeditor_code"
+rm -rf "$INSTALL_DIR/parts/instance"
+rm -rf "$INSTALL_DIR/parts/lxml"
+find "$INSTALL_DIR" -name "*.pyc" -delete;
+find "$INSTALL_DIR" -name "*.pyo" -delete;
+for file in $INSTALL_DIR/parts/zeoserver/bin/*
 do
-    sed -i s:${BUILDOUT_DIR/:/\\:}:${TARGET_DIR/:/\\:}:g $INSTALL_DIR/parts/zeoserver/bin/$file
+    sed -i "s:${BUILDOUT_DIR/:/\\:}:${TARGET_DIR/:/\\:}:g" "$INSTALL_DIR/parts/zeoserver/bin/$file"
 done
 TO_CLEAN_UP=( \
     zeoserver/etc/zeo.conf \
@@ -43,5 +43,5 @@ TO_CLEAN_UP=( \
 )
 for file in "${TO_CLEAN_UP[@]}"
 do
-    sed -i s:${BUILDOUT_DIR/:/\\:}:${TARGET_DIR/:/\\:}:g $INSTALL_DIR/parts/$file
+    sed -i "s:${BUILDOUT_DIR/:/\\:}:${TARGET_DIR/:/\\:}:g" "$INSTALL_DIR/parts/$file"
 done

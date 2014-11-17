@@ -12,7 +12,14 @@ RPM_BUILD_ROOT=$3
 # workaround buildout 2.2 bug where buildout does not install its own egg
 # in buildout:directory/eggs
 fix_buildout_22() {
+    set +e
+    grep "base = os.path.dirname(base)" "$@"
+    if [ "$?" -eq "0" ]; then
         sed -i "s:^ *'[^ ]*\(eggs/zc.buildout.*egg\)',$:  join(base, '\1'),:g" "$@"
+    else
+        sed -i "s:^ *'[^ ]*\(eggs/zc.buildout.*egg\)',$:  '$TARGET_DIR/\1'),:g" "$@"
+    fi
+    set -e
 }
 
 INSTALL_DIR=$RPM_BUILD_ROOT$TARGET_DIR

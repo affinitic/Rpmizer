@@ -1,7 +1,7 @@
 Changelog
 =========
 
-2.3.6 (unreleased)
+2.3.6 (2014-11-17)
 ------------------
 
 - Fix trailing ).

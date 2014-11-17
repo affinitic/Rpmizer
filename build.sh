@@ -7,6 +7,10 @@ usage() { echo "Usage: $0 [-d] [-v rpmizer_version] project_id" 1>&2; exit 1; }
 RPMIZER_VERSION="master"
 DEBUG="build"
 
+if [ $# -lt 1 ]; then
+    usage
+fi
+
 while getopts ":v:d" o; do
     case "${o}" in
         v)

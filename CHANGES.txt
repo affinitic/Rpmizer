@@ -4,7 +4,8 @@ Changelog
 2.3.5 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix workaround for zc.buildout 2.2.x bug 
+  when scripts do not use base variable.
 
 
 2.3.4 (2014-11-05)

@@ -1,10 +1,18 @@
 Changelog
 =========
 
-2.3.4 (unreleased)
+2.3.5 (unreleased)
 ------------------
 
 - Nothing changed yet.
+
+
+2.3.4 (2014-11-05)
+------------------
+
+- Improve debug mode.
+- Workaround for zc.buildout 2.2.x bug (does not install own egg in eggs
+  directory).
 
 
 2.3.3 (2014-05-30)

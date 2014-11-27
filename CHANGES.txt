@@ -1,7 +1,7 @@
 Changelog
 =========
 
-2.3.7 (unreleased)
+2.3.7 (2014-11-27)
 ------------------
 
 - Update rpm version to 3.2.x to workaround ibsa jobs renamed to ploneibsa.

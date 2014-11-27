@@ -30,7 +30,7 @@ PROJECT_ID=${1}
 RPM_NAME=${PROJECT_ID}-website
 USER=${PROJECT_ID}
 
-RPM_VERSION="3.1.${BUILD_NUMBER:-undefined}"
+RPM_VERSION="3.2.${BUILD_NUMBER:-undefined}"
 
 HOME=/data
 

@@ -1,7 +1,7 @@
 Changelog
 =========
 
-2.3.8 (unreleased)
+2.3.8 (2014-12-15)
 ------------------
 
 - Nothing changed yet.

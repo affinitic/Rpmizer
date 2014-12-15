@@ -5,6 +5,8 @@ usage() { echo "Usage: $0 [-d] [-v rpmizer_version] project_id" 1>&2; exit 1; }
 
 #default values
 RPMIZER_VERSION="master"
+BUILDOUT_VERSION="2.2.5"
+SETUPTOOLS_VERSION="7.0"
 DEBUG="build"
 
 if [ $# -lt 1 ]; then
@@ -89,6 +91,8 @@ case $DEBUG in
         --define "home $HOME" \
         --define "user $USER" \
         --define "version $RPM_VERSION" \
+        --define "buildout_version $BUILDOUT_VERSION" \
+        --define "setuptools_version $SETUPTOOLS_VERSION" \
         --define="_topdir $RPM_ROOT_DIR" \
         --define="_tmppath $RPM_ROOT_DIR/tmp" \
         --define="run_buildout $RUN_BUILDOUT" \
@@ -103,7 +107,7 @@ case $DEBUG in
      mkdir -p "$BUILDOUT_DIR"
      cd "$SRC_DIR"
      rm -rf "$SRC_DIR/bin" "$SRC_DIR/parts" "$SRC_DIR/.installed.cfg"
-     "$RUN_BUILDOUT"  "$(which python2.7)" "$SRC_DIR" "$BUILDOUT_DIR" rpm.cfg
+     "$RUN_BUILDOUT"  "$(which python2.7)" "$SRC_DIR" "$BUILDOUT_DIR" rpm.cfg "$BUILDOUT_VERSION" "$SETUPTOOLS_VERSION"
      TARGET_DIR=$HOME/$USER/$RPM_NAME
      RPM_BUILD_ROOT=$WORKSPACE/buildroot
      if [ -d "$RPM_BUILD_ROOT" ]; then

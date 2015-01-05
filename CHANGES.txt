@@ -4,7 +4,7 @@ Changelog
 2.3.10 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Fix when pil*.py are not created.
 
 
 2.3.9 (2015-01-05)

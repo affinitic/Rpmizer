@@ -34,7 +34,7 @@ cd "$INSTALL_DIR/"
 rm -fr "$INSTALL_DIR/parts/docs"
 rm -fr "$INSTALL_DIR/.git"
 rm "$INSTALL_DIR/bin/instance"
-rm "$INSTALL_DIR"/bin/pil*.py
+rm -f "$INSTALL_DIR"/bin/pil*.py
 rm "$INSTALL_DIR/bin/copy_ckeditor_code"
 rm -rf "$INSTALL_DIR/parts/instance"
 rm -rf "$INSTALL_DIR/parts/lxml"

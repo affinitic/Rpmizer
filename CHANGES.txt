@@ -1,7 +1,7 @@
 Changelog
 =========
 
-2.3.10 (unreleased)
+2.3.10 (2015-01-05)
 -------------------
 
 - Fix when pil*.py are not created.

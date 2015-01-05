@@ -2,6 +2,7 @@
 %define installdir %{home}/%{user}/%{name}
 %define python /usr/bin/python2.7
 %define portbase 13080
+%define debug_package %{nil}
 
 Name: %{name}
 Version: %{version}

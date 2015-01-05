@@ -1,19 +1,20 @@
 #!/bin/bash
 set -e
 
-usage() { echo "Usage: $0 [-d] [-v rpmizer_version] project_id" 1>&2; exit 1; }
+usage() { echo "Usage: $0 [-d] [-g] [-v rpmizer_version] project_id" 1>&2; exit 1; }
 
 #default values
 RPMIZER_VERSION="master"
 BUILDOUT_VERSION="2.2.5"
 SETUPTOOLS_VERSION="7.0"
 DEBUG="build"
+GSC_ORACLE="false"
 
 if [ $# -lt 1 ]; then
     usage
 fi
 
-while getopts ":v:d" o; do
+while getopts ":v:d:g" o; do
     case "${o}" in
         v)
             RPMIZER_VERSION=${OPTARG}
@@ -21,12 +22,22 @@ while getopts ":v:d" o; do
         d)
             DEBUG="debug"
             ;;
+        g)
+            GSC_ORACLE="true"
+            ;;
         *)
             usage
             ;;
     esac
 done
 shift $((OPTIND-1))
+
+# GSC Etterbeek buildout depends on gocept.cxoracle
+# which depends on buildout 1.x
+if [ "$GSC_ORACLE" == "true" ]; then
+    BUILDOUT_VERSION="1.4.4"
+    SETUPTOOLS_VERSION="5.7"
+fi
 
 PROJECT_ID=${1}
 RPM_NAME=${PROJECT_ID}-website

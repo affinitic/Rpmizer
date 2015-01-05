@@ -4,7 +4,7 @@ Changelog
 2.3.11 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Avoid debuginfo.
 
 
 2.3.10 (2015-01-05)

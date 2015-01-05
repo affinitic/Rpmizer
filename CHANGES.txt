@@ -4,13 +4,13 @@ Changelog
 2.3.9 (2015-01-05)
 ------------------
 
-- Nothing changed yet.
+- Support for gscetterbeek; include oracle;
 
 
 2.3.8 (2014-12-15)
 ------------------
 
-- Nothing changed yet.
+- Pin setuptools and buildout versions at bootstrap time.
 
 
 2.3.7 (2014-11-27)

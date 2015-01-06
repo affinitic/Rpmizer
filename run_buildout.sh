@@ -21,4 +21,5 @@ mv "$RPM_BUILD_DIR/buildout-cache/eggs" "$INSTALL_DIR"
 # workaround buildout 2.2 bug where buildout does not install its own egg
 # in buildout:directory/eggs
 cp -r eggs/zc.buildout* "$INSTALL_DIR/eggs"
+cp -r eggs/setuptools* "$INSTALL_DIR/eggs"
 bin/buildout -N -c "$BUILDOUT_CFG" buildout:directory="$INSTALL_DIR"

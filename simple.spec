@@ -91,6 +91,10 @@ TARGET_DIR=%{installdir}
 %dir %{installdir}/parts
 %dir %{installdir}/var
 %dir %{installdir}/etc
+%if "%{oracle}" == "true"
+%{installdir}/bin/python-oracle
+%{installdir}/parts/python-oracle
+%endif
 
 %pre core
 exit 0

@@ -108,6 +108,7 @@ case $DEBUG in
         --define="_tmppath $RPM_ROOT_DIR/tmp" \
         --define="run_buildout $RUN_BUILDOUT" \
         --define="install_buildout $INSTALL_BUILDOUT" \
+        --define="oracle $GSC_ORACLE" \
         -bb "$SIMPLE_SPEC"
      ;;
   debug )

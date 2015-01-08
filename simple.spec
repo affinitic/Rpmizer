@@ -3,6 +3,7 @@
 %define python /usr/bin/python2.7
 %define portbase 13080
 %define debug_package %{nil}
+%global __os_install_post %{nil}
 
 Name: %{name}
 Version: %{version}

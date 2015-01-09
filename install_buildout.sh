@@ -36,6 +36,8 @@ rm -fr "$INSTALL_DIR/.git"
 rm "$INSTALL_DIR/bin/instance"
 rm -f "$INSTALL_DIR"/bin/pil*.py
 rm "$INSTALL_DIR/bin/copy_ckeditor_code"
+# bin/python_oracle is needed by GSC_ETTERBEEK to build cx_Oracle
+rm -f "$INSTALL_DIR/bin/python-oracle"
 rm -rf "$INSTALL_DIR/parts/instance"
 rm -rf "$INSTALL_DIR/parts/lxml"
 find "$INSTALL_DIR" -name "*.pyc" -delete;

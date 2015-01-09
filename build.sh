@@ -32,13 +32,6 @@ while getopts ":v:d:g" o; do
 done
 shift $((OPTIND-1))
 
-# GSC Etterbeek buildout depends on gocept.cxoracle
-# which depends on buildout 1.x
-if [ "$GSC_ORACLE" == "true" ]; then
-    BUILDOUT_VERSION="1.4.4"
-    SETUPTOOLS_VERSION="5.7"
-fi
-
 PROJECT_ID=${1}
 RPM_NAME=${PROJECT_ID}-website
 USER=${PROJECT_ID}

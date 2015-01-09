@@ -11,6 +11,7 @@ INSTALL_DIR=$3
 BUILDOUT_CFG=$4
 BUILDOUT_VERSION=$5
 SETUPTOOLS_VERSION=$6
+GSC_ORACLE=$7
 
 "$PATH_TO_PYTHON" bootstrap.py -c "$BUILDOUT_CFG" --version="$BUILDOUT_VERSION" --setuptools-version="$SETUPTOOLS_VERSION"
 bin/buildout -N -c "$BUILDOUT_CFG" install download
@@ -21,5 +22,9 @@ mv "$RPM_BUILD_DIR/buildout-cache/eggs" "$INSTALL_DIR"
 # workaround buildout 2.2 bug where buildout does not install its own egg
 # in buildout:directory/eggs
 cp -r eggs/zc.buildout* "$INSTALL_DIR/eggs"
-cp -r eggs/setuptools* "$INSTALL_DIR/eggs"
-bin/buildout -N -c "$BUILDOUT_CFG" buildout:directory="$INSTALL_DIR"
+if [ "$GSC_ORACLE" == "true" ]; then 
+  ORACLE_HOME="$INSTALL_DIR/parts/python-oracle"
+  ORACLE_HOME="$ORACLE_HOME" LD_LIBRARY_PATH="$ORACLE_HOME" bin/buildout -N -c "$BUILDOUT_CFG" buildout:directory="$INSTALL_DIR"
+else
+  bin/buildout -N -c "$BUILDOUT_CFG" buildout:directory="$INSTALL_DIR"
+fi

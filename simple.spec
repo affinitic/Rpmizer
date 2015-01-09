@@ -3,7 +3,6 @@
 %define python /usr/bin/python2.7
 %define portbase 13080
 %define debug_package %{nil}
-%global __os_install_post %{nil}
 
 Name: %{name}
 Version: %{version}
@@ -76,7 +75,7 @@ Requires:   %{name}-core = %{version}
 # Buildout cannot be run into RPM_BUILD_ROOT
 # RPM_BUILD_ROOT is deleted by install macro
 BUILDOUT_DIR=$RPM_BUILD_DIR/buildout
-%{run_buildout} %{python} $RPM_BUILD_DIR/%{name}-%{version} $BUILDOUT_DIR rpm.cfg %{buildout_version} %{setuptools_version}
+%{run_buildout} %{python} $RPM_BUILD_DIR/%{name}-%{version} $BUILDOUT_DIR %rpm.cfg %{buildout_version} %{setuptools_version} %{oracle}
 
 %install
 # BUILDROOT
@@ -93,7 +92,6 @@ TARGET_DIR=%{installdir}
 %dir %{installdir}/var
 %dir %{installdir}/etc
 %if "%{oracle}" == "true"
-%{installdir}/bin/python-oracle
 %{installdir}/parts/python-oracle
 %endif
 

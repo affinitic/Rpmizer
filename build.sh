@@ -4,7 +4,6 @@ set -e
 usage() { echo "Usage: $0 [-d] [-g] [-v rpmizer_version] project_id" 1>&2; exit 1; }
 
 #default values
-RPMIZER_VERSION="master"
 BUILDOUT_VERSION="2.2.5"
 SETUPTOOLS_VERSION="7.0"
 DEBUG="build"
@@ -16,9 +15,6 @@ fi
 
 while getopts ":v:d:g" o; do
     case "${o}" in
-        v)
-            RPMIZER_VERSION=${OPTARG}
-            ;;
         d)
             DEBUG="debug"
             ;;
@@ -36,12 +32,12 @@ PROJECT_ID=${1}
 RPM_NAME=${PROJECT_ID}-website
 USER=${PROJECT_ID}
 
-RPM_VERSION="3.2.${BUILD_NUMBER:-undefined}"
+RPM_VERSION="3.3.${BUILD_NUMBER:-undefined}"
 
 HOME=/data
 
 
-SRC_DIR=${WORKSPACE:=$(pwd)}/src
+SRC_DIR=${WORKSPACE:=$(pwd)}/plone-buildout
 BUILD_DIR=$WORKSPACE/build
 
 rm -rf "$BUILD_DIR"
@@ -67,14 +63,14 @@ fi
 # get simple.spec from Rpmizer repository
 SIMPLE_SPEC=$BUILD_DIR/simple.spec
 if [ "$DEBUG" == "build" ]; then
-  wget --no-cache -O "$SIMPLE_SPEC" "https://raw.github.com/CIRB/Rpmizer/$RPMIZER_VERSION/simple.spec" --no-check-certificate
+  cp "$WORKSPACE/rpmizer/simple.spec" "$SIMPLE_SPEC"
 else
   cp "$WORKSPACE/simple.spec" "$SIMPLE_SPEC"
 fi
 
 RUN_BUILDOUT=$BUILD_DIR/run_buildout.sh
 if [ "$DEBUG" == "build" ]; then
-  wget --no-cache -O "$RUN_BUILDOUT" "https://raw.github.com/CIRB/Rpmizer/$RPMIZER_VERSION/run_buildout.sh" --no-check-certificate
+  cp "$WORKSPACE/rpmizer/run_buildout.sh" "$RUN_BUILDOUT"
 else
   cp "$WORKSPACE/run_buildout.sh" "$RUN_BUILDOUT"
 fi
@@ -82,7 +78,7 @@ chmod +x "$RUN_BUILDOUT"
 
 INSTALL_BUILDOUT=$BUILD_DIR/install_buildout.sh
 if [ "$DEBUG" == "build" ]; then
-  wget --no-cache -O "$INSTALL_BUILDOUT" "https://raw.github.com/CIRB/Rpmizer/$RPMIZER_VERSION/install_buildout.sh" --no-check-certificate
+  cp "$WORKSPACE/rpmizer/install_buildout.sh" "$INSTALL_BUILDOUT"
 else
   cp "$WORKSPACE/install_buildout.sh" "$INSTALL_BUILDOUT"
 fi
@@ -111,7 +107,7 @@ case $DEBUG in
      fi
      mkdir -p "$BUILDOUT_DIR"
      cd "$SRC_DIR"
-     rm -rf "$SRC_DIR/bin" "$SRC_DIR/parts" "$SRC_DIR/.installed.cfg"
+     rm -rf "${SRC_DIR:?}/bin" "$SRC_DIR/parts" "$SRC_DIR/.installed.cfg"
      "$RUN_BUILDOUT"  "$(which python2.7)" "$SRC_DIR" "$BUILDOUT_DIR" rpm.cfg "$BUILDOUT_VERSION" "$SETUPTOOLS_VERSION"
      TARGET_DIR=$HOME/$USER/$RPM_NAME
      RPM_BUILD_ROOT=$WORKSPACE/buildroot

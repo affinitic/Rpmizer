@@ -13,7 +13,7 @@ BUILDOUT_VERSION=$5
 SETUPTOOLS_VERSION=$6
 GSC_ORACLE=$7
 
-"$PATH_TO_PYTHON" bootstrap.py -c "$BUILDOUT_CFG" --version="$BUILDOUT_VERSION" --setuptools-version="$SETUPTOOLS_VERSION"
+"$PATH_TO_PYTHON" bootstrap-buildout.py -c "$BUILDOUT_CFG" --version="$BUILDOUT_VERSION" --setuptools-version="$SETUPTOOLS_VERSION"
 bin/buildout -N -c "$BUILDOUT_CFG" install download
 bin/buildout -N -c "$BUILDOUT_CFG" install install
 mkdir -p "$INSTALL_DIR"
@@ -23,8 +23,11 @@ mv "$RPM_BUILD_DIR/buildout-cache/eggs" "$INSTALL_DIR"
 # in buildout:directory/eggs
 cp -r eggs/zc.buildout* "$INSTALL_DIR/eggs"
 if [ "$GSC_ORACLE" == "true" ]; then 
-  ORACLE_HOME="$INSTALL_DIR/parts/python-oracle"
-  ORACLE_HOME="$ORACLE_HOME" LD_LIBRARY_PATH="$ORACLE_HOME" bin/buildout -N -c "$BUILDOUT_CFG" buildout:directory="$INSTALL_DIR"
+  (
+  export ORACLE_HOME="$INSTALL_DIR/parts/python-oracle"
+  export LD_LIBRARY_PATH="$ORACLE_HOME"
+  bin/buildout -N -c "$BUILDOUT_CFG" buildout:directory="$INSTALL_DIR"
+  )
 else
   bin/buildout -N -c "$BUILDOUT_CFG" buildout:directory="$INSTALL_DIR"
 fi

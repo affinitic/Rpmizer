@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-usage() { echo "Usage: $0 [-d] [-g] [-v rpmizer_version] project_id" 1>&2; exit 1; }
+usage() { echo "Usage: $0 [-d] [-g] project_id" 1>&2; exit 1; }
 
 #default values
 BUILDOUT_VERSION="2.2.5"

@@ -6,6 +6,7 @@ usage() { echo "Usage: $0 [-d] [-g] [-v rpmizer_version] project_id" 1>&2; exit 
 #default values
 BUILDOUT_VERSION="2.2.5"
 SETUPTOOLS_VERSION="7.0"
+RPM_BASE_VERSION="3.3"
 DEBUG="build"
 GSC_ORACLE="false"
 
@@ -32,7 +33,7 @@ PROJECT_ID=${1}
 RPM_NAME=${PROJECT_ID}-website
 USER=${PROJECT_ID}
 
-RPM_VERSION="3.3.${BUILD_NUMBER:-undefined}"
+RPM_VERSION="${RPM_BASE_VERSION}.${BUILD_NUMBER:-undefined}"
 
 HOME=/data
 

@@ -24,6 +24,7 @@ mv "$RPM_BUILD_DIR/buildout-cache/eggs" "$INSTALL_DIR"
 # workaround buildout 2.2 bug where buildout does not install its own egg
 # in buildout:directory/eggs
 cp -r eggs/zc.buildout* "$INSTALL_DIR/eggs"
+cp -r eggs/setuptools* "$INSTALL_DIR/eggs"
 if [ "$GSC_ORACLE" == "true" ]; then 
   (
   export ORACLE_HOME="$INSTALL_DIR/parts/python-oracle"

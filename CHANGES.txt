@@ -1,7 +1,7 @@
 Changelog
 =========
 
-2.3.13 (unreleased)
+2.3.13 (2015-07-28)
 -------------------
 
 - Upgrade to latest zc.buildout and setuptools.

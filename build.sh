@@ -4,8 +4,8 @@ set -e
 usage() { echo "Usage: $0 [-d] [-g] project_id" 1>&2; exit 1; }
 
 #default values
-BUILDOUT_VERSION="2.2.5"
-SETUPTOOLS_VERSION="7.0"
+BUILDOUT_VERSION="2.4.0"
+SETUPTOOLS_VERSION="18.0.1"
 RPM_BASE_VERSION="3.3"
 DEBUG="build"
 GSC_ORACLE="false"

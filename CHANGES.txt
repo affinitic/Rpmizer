@@ -1,7 +1,7 @@
 Changelog
 =========
 
-2.3.14 (unreleased)
+2.3.14 (2015-07-28)
 -------------------
 
 - pass zc.buildout and setuptools version when running buildout.

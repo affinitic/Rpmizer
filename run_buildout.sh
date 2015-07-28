@@ -13,7 +13,7 @@ BUILDOUT_VERSION=$5
 SETUPTOOLS_VERSION=$6
 GSC_ORACLE=$7
 
-"$PATH_TO_PYTHON" bootstrap-buildout.py -c "$BUILDOUT_CFG" --version="$BUILDOUT_VERSION" --setuptools-version="$SETUPTOOLS_VERSION"
+"$PATH_TO_PYTHON" bootstrap-buildout.py -c "$BUILDOUT_CFG" --buildout-version="$BUILDOUT_VERSION" --setuptools-version="$SETUPTOOLS_VERSION"
 bin/buildout -N -c "$BUILDOUT_CFG" install download
 bin/buildout -N -c "$BUILDOUT_CFG" install install
 mkdir -p "$INSTALL_DIR"

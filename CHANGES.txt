@@ -4,7 +4,7 @@ Changelog
 2.3.12 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Support latest bootstrap-buildout.
 
 
 2.3.11 (2015-01-05)

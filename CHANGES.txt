@@ -1,7 +1,7 @@
 Changelog
 =========
 
-2.3.12 (unreleased)
+2.3.12 (2015-07-28)
 -------------------
 
 - Support latest bootstrap-buildout.

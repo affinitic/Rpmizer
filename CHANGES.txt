@@ -4,7 +4,8 @@ Changelog
 2.3.14 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- pass zc.buildout and setuptools version when running buildout.
+  to shadow versions set in dist.plone.org/release/...
 
 
 2.3.13 (2015-07-28)

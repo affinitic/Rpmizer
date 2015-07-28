@@ -16,8 +16,10 @@ fix_buildout_22() {
     grep "base = os.path.dirname(base)" "$@"
     if [ "$?" -eq "0" ]; then
         sed -i "s:^ *'[^ ]*\(eggs/zc.buildout.*egg\)',$:  join(base, '\1'),:g" "$@"
+        sed -i "s:^ *'[^ ]*\(eggs/setuptools.*egg\)',$:  join(base, '\1'),:g" "$@"
     else
         sed -i "s:^ *'[^ ]*\(eggs/zc.buildout.*egg\)',$:  '$TARGET_DIR/\1',:g" "$@"
+        sed -i "s:^ *'[^ ]*\(eggs/setuptools.*egg\)',$:  '$TARGET_DIR/\1',:g" "$@"
     fi
     set -e
 }
